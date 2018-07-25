@@ -16,9 +16,9 @@ geth --keystore qdata/dd/keystore/ account new
 # enode url
 PUBKEY=`bootnode -nodekey qdata/dd/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:${PORT}"'?discport=0&raftport='"${RAFT_PORT}"
-echo Your ENode URL is:
-echo $ENODE_URL
-echo
+echo Your ENode URL is: $ENODE_URL
+echo 'Please run > raft.addPeer("'$ENODE_URL'") in any node of the blockchain network to get RAFT_ID' 
+echo 
 
 mkdir -p qdata/logs
 touch qdata/logs/constellation.log
