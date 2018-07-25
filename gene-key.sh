@@ -1,23 +1,8 @@
 #!/bin/bash
 
-# Generate keys
+# Init env
 killall geth bootnode constellation-node
 rm -rf qdata
-
-
-# Local config
-HOST_IP=172.16.1.4
-PORT=21000
-RPC_PORT=22000
-RAFT_PORT=50401
-CONSTE_POT=9001
-
-# Cluster config
-CLUSTER_IP=172.16.1.6
-CLUS_CON_PORT=9001
-
-# Password config
-
 
 # Generate keys
 mkdir -p qdata/dd/{keystore,geth}
