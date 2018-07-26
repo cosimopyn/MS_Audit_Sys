@@ -9,7 +9,8 @@ echo '--------------------------------------------------------------------------
 
 # Generate keys
 echo "Start to generate keys..."
-mkdir -p qdata/dd/{keystore,geth}
+mkdir -p qdata/dd/keystore
+mkdir -p qdata/dd/geth
 mkdir -p qdata/con
 # encrypted Constellation key pair
 echo '----------------------------------------------------------------------------'
