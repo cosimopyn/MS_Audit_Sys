@@ -1,11 +1,13 @@
 #!/bin/bash
 
 echo "Confirm local config ..."
+RAFT_ID=`jq -r '.RAFT_ID' config.json`
 HOST_IP=`jq -r '.HOST_IP' config.json`
 PORT=`jq -r '.PORT' config.json`
 RAFT_PORT=`jq -r '.RAFT_PORT' config.json`
 RPC_PORT=`jq -r '.RPC_PORT' config.json`
 CONSTE_PORT=`jq -r '.CONSTE_PORT' config.json`
+echo "RAFT ID: $RAFT_ID (it should be generated on a node in the cluster)"
 echo "Host IP: $HOST_IP"
 echo "Port: $PORT"
 echo "RAFT Port: $RAFT_PORT"
@@ -18,7 +20,7 @@ echo "Cluste IP: $CLUSTER_IP"
 echo "Cluster Constellation Port: $CLUS_CON_PORT"
 
 read -p "Is it right?(y/n): " CONFIRMED
-if [$CONFIRMED != "y" || $CONFIRMED != "Y"]; then
+if [ "$CONFIRMED"x != "y"x ]; then
     echo "Exiting, please edit \"config.json\""
     exit
 fi
