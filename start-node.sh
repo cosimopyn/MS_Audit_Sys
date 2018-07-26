@@ -1,16 +1,7 @@
 #!/bin/bash
 
-# Local config
-HOST_IP=172.16.1.4
-PORT=21000
-RPC_PORT=22000
-RAFT_PORT=50401
-CONSTE_PORT=9001
-RAFT_ID= # add the Raft ID here
-
-# Cluster config
-CLUSTER_IP=172.16.1.6
-CLUS_CON_PORT=9001
+sh config.sh
+echo "Start to run node..."
 
 # Start Constellation node
 rm -f qdata/con/tm.ipc
