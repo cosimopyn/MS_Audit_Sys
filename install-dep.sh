@@ -49,3 +49,4 @@ echo "----------------------------------------------------------"
 # get github source code
 echo "Get github source code..."
 git clone https://github.com/jpmorganchase/quorum-examples
+echo "Done"
