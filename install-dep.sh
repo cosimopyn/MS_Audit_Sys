@@ -5,7 +5,7 @@ set -eu -o pipefail
 echo "Install deps..."
 add-apt-repository ppa:ethereum/ethereum
 apt-get update
-apt-get install -y build-essential unzip libdb-dev libleveldb-dev libsodium-dev zlib1g-dev libtinfo-dev solc sysvbanner wrk
+apt-get install -y build-essential unzip libdb-dev libleveldb-dev libsodium-dev zlib1g-dev libtinfo-dev solc sysvbanner wrk jq
 echo "----------------------------------------------------------"
 
 # install constellation
