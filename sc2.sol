@@ -1,19 +1,20 @@
 pragma solidity ^0.4.15;
 
-contract simplestorage {
-  byte32[] public dataStore;
+contract sc2 {
+  bytes32[] public dataStore;
   uint public idx;
  
-  public function constructor(byte32 initVal) {
-    storedData = initVal;
+  constructor(bytes32 initVal) {
+    dataStore.push(initVal);
     idx=1;
   }
 
-  public function set(byte32 x) {
-    storedData = x;
+  function put(bytes32 x) {
+    dataStore.push(x);
+    idx = idx + 1;
   }
 
-  public function get() constant returns (uint retVal) {
-    return storedData;
+  function get() constant returns (bytes32 retVal) {
+    return dataStore[idx];
   }
 }
