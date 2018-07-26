@@ -4,7 +4,7 @@
 echo "Start to initialize environment..."
 killall geth bootnode constellation-node
 rm -rf qdata
-sh ./config.sh
+source ./config
 echo '----------------------------------------------------------------------------'
 
 # Generate keys
