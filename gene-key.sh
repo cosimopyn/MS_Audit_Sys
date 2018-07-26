@@ -1,10 +1,14 @@
 #!/bin/bash
 
 # Init env
+echo '----------------------------------------------------------------------------'
 echo "Start to initialize environment..."
 killall geth bootnode constellation-node
 rm -rf qdata
-source ./config
+source ./config.sh
+echo "HOST_IP=$HOST_IP"
+echo "PORT=$PORT"
+echo "RAFT_PORT=$RAFT_PORT"
 echo '----------------------------------------------------------------------------'
 
 # Generate keys
@@ -20,13 +24,14 @@ constellation-node --generatekeys=qdata/con/tm
 bootnode -genkey qdata/dd/geth/nodekey
 # private account key file
 echo '----------------------------------------------------------------------------'
-echo 'Next you need to enter your Etheruem password. Please save it in pw.data file later for login'
+echo 'Next you need to enter your Etheruem password.'
+echo '[*] Please save it in pw.data file later for login'
 geth --keystore qdata/dd/keystore/ account new
 # enode url
 PUBKEY=`bootnode -nodekey qdata/dd/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:${PORT}"'?discport=0&raftport='"${RAFT_PORT}"
-echo Your ENode URL is: $ENODE_URL
-echo 'Please run > raft.addPeer("'$ENODE_URL'") in any node of the blockchain network to get RAFT_ID' 
+echo "Your ENode URL is: $ENODE_URL"
+echo '[*] Please run > raft.addPeer("'$ENODE_URL'") in any node of the blockchain network to get RAFT_ID' 
 echo '----------------------------------------------------------------------------'
 echo 'Done'
 
