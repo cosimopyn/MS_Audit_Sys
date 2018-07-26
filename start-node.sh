@@ -1,7 +1,30 @@
 #!/bin/bash
 
-sh config.sh
+echo "Confirm local config ..."
+HOST_IP=`jq -r '.HOST_IP' config.json`
+PORT=`jq -r '.PORT' config.json`
+RAFT_PORT=`jq -r '.RAFT_PORT' config.json`
+RPC_PORT=`jq -r '.RPC_PORT' config.json`
+CONSTE_PORT=`jq -r '.CONSTE_PORT' config.json`
+echo "Host IP: $HOST_IP"
+echo "Port: $PORT"
+echo "RAFT Port: $RAFT_PORT"
+echo "RPC Port: $RPC_PORT"
+echo "Constellation Port: $CONSTE_PORT"
+echo "Confirm cluster config ..."
+CLUSTER_IP=`jq -r '.CLUSTER_IP' config.json`
+CLUS_CON_PORT=`jq -r '.CLUS_CON_PORT' config.json`
+echo "Cluste IP: $CLUSTER_IP"
+echo "Cluster Constellation Port: $CLUS_CON_PORT"
+
+read -p "Is it right?(y/n): " CONFIRMED
+if [$CONFIRMED != "y" || $CONFIRMED != "Y"]; then
+    echo "Exiting, please edit \"config.json\""
+    exit
+fi
+
 echo "Start to run node..."
+exit
 
 # Start Constellation node
 rm -f qdata/con/tm.ipc
