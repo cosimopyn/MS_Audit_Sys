@@ -27,14 +27,14 @@ bootnode -genkey qdata/dd/geth/nodekey
 # private account key file
 echo '----------------------------------------------------------------------------'
 echo 'Next you need to enter your Etheruem password (you can use an empty one)'
-echo '[*] Please save it in \"pw.data\" file later for login'
+echo '[*] Please remember to save it in \"pw.data\" file later for login'
 geth --keystore qdata/dd/keystore/ account new
 # enode url
 PUBKEY=`bootnode -nodekey qdata/dd/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:${PORT}"'?discport=0&raftport='"${RAFT_PORT}"
-echo "Your ENode URL is: $ENODE_URL"
+# echo "Your ENode URL is: $ENODE_URL"
 echo '[*] Please run > raft.addPeer("'$ENODE_URL'") in any node of the blockchain network to get RAFT_ID' 
-echo 'And edit RAFT_ID in \"confige.json\" file' 
+echo 'And then edit RAFT_ID in \"confige.json\" file' 
 echo '----------------------------------------------------------------------------'
 echo 'Done'
 
