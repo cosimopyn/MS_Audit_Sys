@@ -13,7 +13,7 @@ constellation-node --generatekeys=qdata/con/tm
 # node key
 bootnode -genkey qdata/dd/geth/nodekey
 # private account key file
-echo 'Now you need to enter your Etheruem password. Please also save it in pw.data file later'
+echo 'Next you need to enter your Etheruem password. Please save it in pw.data file later for login'
 geth --keystore qdata/dd/keystore/ account new
 # enode url
 PUBKEY=`bootnode -nodekey qdata/dd/geth/nodekey -writeaddress`
