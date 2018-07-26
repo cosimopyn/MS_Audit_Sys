@@ -5,9 +5,9 @@ echo '--------------------------------------------------------------------------
 echo "Start to initialize environment..."
 killall geth bootnode constellation-node
 rm -rf qdata
-HOST_IP=`jq '.HOST_IP' config.json`
-PORT=`jq '.PORT' config.json`
-RAFT_PORT=`jq '.RAFT_PORT' config.json`
+HOST_IP=`jq -r '.HOST_IP' config.json`
+PORT=`jq -r '.PORT' config.json`
+RAFT_PORT=`jq -r '.RAFT_PORT' config.json`
 echo "HOST_IP=$HOST_IP"
 echo "PORT=$PORT"
 echo "RAFT_PORT=$RAFT_PORT"
