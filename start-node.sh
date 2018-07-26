@@ -24,10 +24,9 @@ if [ "$CONFIRMED"x != "y"x ]; then
     echo "Exiting, please edit \"config.json\""
     exit
 fi
-
+echo "Confirmed"
+echo '----------------------------------------------------------------------------'
 echo "Start to run node..."
-exit
-
 # Start Constellation node
 rm -f qdata/con/tm.ipc
 CMD="constellation-node --url=https://$HOST_IP:$CONSTE_PORT/ --port=$CONSTE_PORT --workdir=qdata/con --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://$CLUSTER_IP:$CLUS_CON_PORT/"
@@ -43,11 +42,14 @@ while $DOWN; do
     fi
 done
 echo "Established Constellation node from host($HOST_IP:$CONSTE_PORT) to Network ($CLUSTER_IP:$CLUS_CON_PORT)"
-echo
+echo '----------------------------------------------------------------------------'
 
 # Start Quorum node
 ARGS="--nodiscover --raft --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --emitcheckpoints"
 # --permissioned
 PRIVATE_CONFIG=qdata/con/tm.ipc nohup geth --datadir qdata/dd $ARGS --raftjoinexisting $RAFT_ID --raftport $RAFT_PORT --rpcport $RPC_PORT --port $PORT --unlock 0 --password passwords.txt 2>>qdata/logs/quorum.log &
 echo "Established Quorum node from host($HOST_IP:$PORT) to Network ($CLUSTER_IP)"
-echo
+echo '----------------------------------------------------------------------------'
+echo "Done"
+echo "Please run $ geth attach http://$HOST_IP:$PORT to attach this node"
+
