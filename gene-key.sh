@@ -5,6 +5,7 @@ echo '--------------------------------------------------------------------------
 echo "Start to initialize environment..."
 killall geth bootnode constellation-node
 rm -rf qdata
+echo "Local config:"
 HOST_IP=`jq -r '.HOST_IP' config.json`
 PORT=`jq -r '.PORT' config.json`
 RAFT_PORT=`jq -r '.RAFT_PORT' config.json`
@@ -19,7 +20,6 @@ mkdir -p qdata/dd/keystore
 mkdir -p qdata/dd/geth
 mkdir -p qdata/con
 # encrypted Constellation key pair
-echo '----------------------------------------------------------------------------'
 echo 'Now you need to enter your Constellation password'
 constellation-node --generatekeys=qdata/con/tm
 # node key
