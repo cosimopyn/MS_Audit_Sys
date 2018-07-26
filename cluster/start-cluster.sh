@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 HOST_IP=`jq -r '.HOST_IP' config-cluster.json`
 PORT=`jq -r '.PORT' config-cluster.json`
 RAFT_PORT=`jq -r '.RAFT_PORT' config-cluster.json`
@@ -38,15 +37,15 @@ echo "[*] Starting Constellation nodes"
 echo "[*] Starting Ethereum nodes with ChainID and NetworkId of $NETWORK_ID"
 set -v
 ARGS="--nodiscover --verbosity 5 --networkid $NETWORK_ID --raft --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --emitcheckpoints"
-PRIVATE_CONFIG=qdata/c1/tm.ipc nohup geth --datadir qdata/dd1 $ARGS --permissioned --raftport $((RAFT_PORT)) --rpcport $((RPC_PORT)) --port $((PORT)) --unlock 0 --password ../pw.data 2>>qdata/logs/1.log &
-PRIVATE_CONFIG=qdata/c2/tm.ipc nohup geth --datadir qdata/dd2 $ARGS --permissioned --raftport $((RAFT_PORT+1)) --rpcport $((RPC_PORT+1)) --port $((PORT+1)) --unlock 0 --password ../pw.data 2>>qdata/logs/2.log &
-PRIVATE_CONFIG=qdata/c3/tm.ipc nohup geth --datadir qdata/dd3 $ARGS --permissioned --raftport $((RAFT_PORT+2)) --rpcport $((RPC_PORT+2)) --port $((PORT+2)) --unlock 0 --password ../pw.data 2>>qdata/logs/3.log &
-PRIVATE_CONFIG=qdata/c4/tm.ipc nohup geth --datadir qdata/dd4 $ARGS --permissioned --raftport $((RAFT_PORT+3)) --rpcport $((RPC_PORT+3)) --port $((PORT+3)) --unlock 0 --password ../pw.data 2>>qdata/logs/4.log &
-PRIVATE_CONFIG=qdata/c5/tm.ipc nohup geth --datadir qdata/dd5 $ARGS --raftport $((RAFT_PORT+4)) --rpcport $((RPC_PORT+4)) --port $((PORT+4)) --unlock 0 --password ../pw.data 2>>qdata/logs/5.log &
-PRIVATE_CONFIG=qdata/c6/tm.ipc nohup geth --datadir qdata/dd6 $ARGS --raftport $((RAFT_PORT+5)) --rpcport $((RPC_PORT+5)) --port $((PORT+5)) --unlock 0 --password ../pw.data 2>>qdata/logs/6.log &
-PRIVATE_CONFIG=qdata/c7/tm.ipc nohup geth --datadir qdata/dd7 $ARGS --raftport $((RAFT_PORT+6)) --rpcport $((RPC_PORT+6)) --port $((PORT+6)) --unlock 0 --password ../pw.data 2>>qdata/logs/7.log &
+PRIVATE_CONFIG=qdata/c1/tm.ipc nohup geth --datadir qdata/dd1 $ARGS --permissioned --raftport $((RAFT_PORT)) --rpcport $((RPC_PORT)) --port $((PORT)) --unlock 0 --password pw.data 2>>qdata/logs/1.log &
+PRIVATE_CONFIG=qdata/c2/tm.ipc nohup geth --datadir qdata/dd2 $ARGS --permissioned --raftport $((RAFT_PORT+1)) --rpcport $((RPC_PORT+1)) --port $((PORT+1)) --unlock 0 --password pw.data 2>>qdata/logs/2.log &
+PRIVATE_CONFIG=qdata/c3/tm.ipc nohup geth --datadir qdata/dd3 $ARGS --permissioned --raftport $((RAFT_PORT+2)) --rpcport $((RPC_PORT+2)) --port $((PORT+2)) --unlock 0 --password pw.data 2>>qdata/logs/3.log &
+PRIVATE_CONFIG=qdata/c4/tm.ipc nohup geth --datadir qdata/dd4 $ARGS --permissioned --raftport $((RAFT_PORT+3)) --rpcport $((RPC_PORT+3)) --port $((PORT+3)) --unlock 0 --password pw.data 2>>qdata/logs/4.log &
+PRIVATE_CONFIG=qdata/c5/tm.ipc nohup geth --datadir qdata/dd5 $ARGS --raftport $((RAFT_PORT+4)) --rpcport $((RPC_PORT+4)) --port $((PORT+4)) --unlock 0 --password pw.data 2>>qdata/logs/5.log &
+PRIVATE_CONFIG=qdata/c6/tm.ipc nohup geth --datadir qdata/dd6 $ARGS --raftport $((RAFT_PORT+5)) --rpcport $((RPC_PORT+5)) --port $((PORT+5)) --unlock 0 --password pw.data 2>>qdata/logs/6.log &
+PRIVATE_CONFIG=qdata/c7/tm.ipc nohup geth --datadir qdata/dd7 $ARGS --raftport $((RAFT_PORT+6)) --rpcport $((RPC_PORT+6)) --port $((PORT+6)) --unlock 0 --password pw.data 2>>qdata/logs/7.log &
 set +v
 
 echo
 echo "All nodes configured. See 'qdata/logs' for logs, and run e.g. 'geth attach qdata/dd1/geth.ipc' to attach to the first Geth node."
-echo "To test sending a private transaction from Node 1 to Node 7, run './runscript.sh private-contract.js'"
+
