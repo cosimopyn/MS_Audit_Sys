@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # sh gene-key.sh first, and add the Raft ID here
 RAFT_ID= 
 
