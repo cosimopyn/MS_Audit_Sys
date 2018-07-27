@@ -2,7 +2,17 @@
 MS Blockchain Audit System with Quorum
 
 How to start:
-1. git clone
-2. sh ./install-dep.sh
-3. sh ./gene-key.sh
-4. sh ./start-node.sh
+git clone
+cd MS
+sh ./init-env.sh
+sh ./install-dep.sh
+
+Start a cluster:
+cd cluster
+./init-cluster.sh
+./start-cluster.sh
+
+Start a node:
+cd node
+./gene-key.sh
+./start-node.sh
