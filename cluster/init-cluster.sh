@@ -5,6 +5,8 @@ killall geth bootnode constellation-node
 rm -rf qdata
 mkdir -p qdata/logs
 
+./gene-enodes.sh
+
 echo "[*] Configuring node 1 (permissioned)"
 mkdir -p qdata/dd1/keystore
 mkdir -p qdata/dd1/geth
