@@ -64,5 +64,5 @@ PRIVATE_CONFIG=qdata/con/tm.ipc nohup geth --datadir qdata/dd $ARGS --raftjoinex
 echo "Established Quorum node from host($HOST_IP:$PORT) to Network ($CLUSTER_IP)"
 echo '----------------------------------------------------------------------------'
 echo "Done"
-echo "Please run $ geth attach http://$HOST_IP:$PORT to attach this node"
+echo "Please run $ geth attach qdata/dd/geth.ipc to attach this node"
 
