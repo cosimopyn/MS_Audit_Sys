@@ -35,7 +35,7 @@ ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:${PORT}"'?discport=0&raftport='"${RAFT
 # echo "Your ENode URL is: $ENODE_URL"
 echo '[*] Please use ipc to login in any node of the blockchain network instead of http '
 echo '[*] Run > raft.addPeer("'$ENODE_URL'");'
-echo '[*] And then get RAFT_ID and edit \"confige.json\" file' 
+echo '[*] And then get RAFT_ID and edit \"config.json\" file' 
 echo '----------------------------------------------------------------------------'
 echo 'Done'
 
