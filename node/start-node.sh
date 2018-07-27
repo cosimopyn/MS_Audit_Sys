@@ -45,7 +45,7 @@ echo "Established Constellation node from host($HOST_IP:$CONSTE_PORT) to Network
 echo '----------------------------------------------------------------------------'
 
 
-NETWORK_ID=$(cat genesis.json | grep chainId | awk -F " " '{print $2}' | awk -F "," '{print $1}')
+NETWORK_ID=$(cat ../genesis.json | grep chainId | awk -F " " '{print $2}' | awk -F "," '{print $1}')
 if [ $NETWORK_ID -eq 1 ]
 then
     echo "  Quorum should not be run with a chainId of 1 (Ethereum mainnet)"
@@ -56,7 +56,7 @@ fi
 # Start Quorum node
 ARGS="--nodiscover -verbosity 5 --networkid $NETWORK_ID --raft --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --emitcheckpoints"
 # --permissioned
-PRIVATE_CONFIG=qdata/con/tm.ipc nohup geth --datadir qdata/dd $ARGS --raftjoinexisting $RAFT_ID --raftport $RAFT_PORT --rpcport $RPC_PORT --port $PORT --unlock 0 --password pw.data 2>>qdata/logs/quorum.log &
+PRIVATE_CONFIG=qdata/con/tm.ipc nohup geth --datadir qdata/dd $ARGS --raftjoinexisting $RAFT_ID --raftport $RAFT_PORT --rpcport $RPC_PORT --port $PORT --unlock 0 --password ../pw.data 2>>qdata/logs/quorum.log &
 echo "Established Quorum node from host($HOST_IP:$PORT) to Network ($CLUSTER_IP)"
 echo '----------------------------------------------------------------------------'
 echo "Done"
