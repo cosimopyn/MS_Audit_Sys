@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "[*] Cleaning up temporary data directories"
+killall geth bootnode constellation-node
 rm -rf qdata
 mkdir -p qdata/logs
 
