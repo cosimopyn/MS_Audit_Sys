@@ -23,7 +23,7 @@ do
     	CMD="constellation-node --url=https://${HOST_IP}:${CUR_CONSTE_PORT}/ --port=${CUR_CONSTE_PORT} --workdir=$DDIR --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://${HOST_IP}:${CONSTE_PORT}/"
     else
     	CMD="constellation-node --url=https://127.0.0.$((i-1)):${CUR_CONSTE_PORT}/ --port=${CUR_CONSTE_PORT} --workdir=$DDIR --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://${HOST_IP}:${CONSTE_PORT}/"
-    if
+    fi
     echo "$CMD >> qdata/logs/constellation$i.log 2>&1 &"
     $CMD >> "qdata/logs/constellation$i.log" 2>&1 &
 done
