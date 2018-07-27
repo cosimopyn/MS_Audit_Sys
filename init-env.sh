@@ -1,12 +1,13 @@
 #!/bin/bash
 
-chmod 774 ./install-dep.sh
+chmod +x ./install-dep.sh
 
-chmod 774 ./cluster/init-cluster.sh
-chmod 774 ./cluster/start-cluster.sh
-chmod 774 ./cluster/stop.sh
-chmod 774 ./cluster/constellation-start.sh
-chmod 774 ./cluster/gene-enodes.sh
+chmod +x ./cluster/init-cluster.sh
+chmod +x ./cluster/start-cluster.sh
+chmod +x ./cluster/start-cluster-permission.sh
+chmod +x ./cluster/stop.sh
+chmod +x ./cluster/constellation-start.sh
+chmod +x ./cluster/gene-enodes.sh
 
-chmod 774 ./node/gene-key.sh
-chmod 774 ./node/start-node.sh
+chmod +x ./node/gene-key.sh
+chmod +x ./node/start-node.sh
