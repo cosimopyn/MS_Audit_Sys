@@ -12,27 +12,27 @@ echo '[' &>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd1/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT))"'?discport=0&raftport='"$((RAFT_PORT))"
-echo "  \"${ENODE_URL}\"" &>>permissioned-nodes.json
+echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd2/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+1))"'?discport=0&raftport='"$((RAFT_PORT+1))"
-echo "  \"${ENODE_URL}\"" &>>permissioned-nodes.json
+echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd3/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+2))"'?discport=0&raftport='"$((RAFT_PORT+2))"
-echo "  \"${ENODE_URL}\"" &>>permissioned-nodes.json
+echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd4/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+3))"'?discport=0&raftport='"$((RAFT_PORT+3))"
-echo "  \"${ENODE_URL}\"" &>>permissioned-nodes.json
+echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd5/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+4))"'?discport=0&raftport='"$((RAFT_PORT+4))"
-echo "  \"${ENODE_URL}\"" &>>permissioned-nodes.json
+echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd6/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+5))"'?discport=0&raftport='"$((RAFT_PORT+5))"
-echo "  \"${ENODE_URL}\"" &>>permissioned-nodes.json
+echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd7/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+6))"'?discport=0&raftport='"$((RAFT_PORT+6))"
