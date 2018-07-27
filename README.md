@@ -10,9 +10,13 @@ MS Blockchain Audit System with Quorum
 - Start a cluster:  
 `cd cluster`  
 `./init-cluster.sh`  
-`./start-cluster.sh`
+start a cluster:  
+`./start-cluster.sh`  
+or start a permissioned cluster:  
+`./start-cluster-permission.sh`
 
 - Start a node:  
 `cd node`  
 `./gene-key.sh`  
+Then get RAFT ID 
 `./start-node.sh`  
