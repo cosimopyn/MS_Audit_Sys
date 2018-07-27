@@ -1,5 +1,5 @@
 {
-    "RAFT_ID":          0,
+    "RAFT_ID":          8,
     "HOST_IP":          "172.16.1.4",
     "PORT":             21000,
     "RPC_PORT":         22000,
