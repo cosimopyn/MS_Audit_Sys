@@ -18,7 +18,7 @@ do
     cp "keys/tm$i.key" "$DDIR/tm.key"
     rm -f "$DDIR/tm.ipc"
     CUR_CONSTE_PORT=$((CONSTE_PORT-1+i))
-    CMD="constellation-node --url=https://${HOST_IP}:900${CUR_CONSTE_PORT}/ --port=${CUR_CONSTE_PORT} --workdir=$DDIR --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://${HOST_IP}:${CONSTE_PORT}/"
+    CMD="constellation-node --url=https://${HOST_IP}:${CUR_CONSTE_PORT}/ --port=${CUR_CONSTE_PORT} --workdir=$DDIR --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://${HOST_IP}:${CONSTE_PORT}/"
     echo "$CMD >> qdata/logs/constellation$i.log 2>&1 &"
     $CMD >> "qdata/logs/constellation$i.log" 2>&1 &
 done
