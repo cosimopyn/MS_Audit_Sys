@@ -15,27 +15,27 @@ ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT))"'?discport=0&raftport='"$((R
 echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd2/geth/nodekey -writeaddress`
-ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+1))"'?discport=0&raftport='"$((RAFT_PORT+1))"
+ENODE_URL='enode://'"${PUBKEY}@127.0.0.1:$((PORT+1))"'?discport=0&raftport='"$((RAFT_PORT+1))"
 echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd3/geth/nodekey -writeaddress`
-ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+2))"'?discport=0&raftport='"$((RAFT_PORT+2))"
+ENODE_URL='enode://'"${PUBKEY}@127.0.0.2:$((PORT+2))"'?discport=0&raftport='"$((RAFT_PORT+2))"
 echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd4/geth/nodekey -writeaddress`
-ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+3))"'?discport=0&raftport='"$((RAFT_PORT+3))"
+ENODE_URL='enode://'"${PUBKEY}@127.0.0.3:$((PORT+3))"'?discport=0&raftport='"$((RAFT_PORT+3))"
 echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd5/geth/nodekey -writeaddress`
-ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+4))"'?discport=0&raftport='"$((RAFT_PORT+4))"
+ENODE_URL='enode://'"${PUBKEY}@127.0.0.4:$((PORT+4))"'?discport=0&raftport='"$((RAFT_PORT+4))"
 echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd6/geth/nodekey -writeaddress`
-ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+5))"'?discport=0&raftport='"$((RAFT_PORT+5))"
+ENODE_URL='enode://'"${PUBKEY}@127.0.0.5:$((PORT+5))"'?discport=0&raftport='"$((RAFT_PORT+5))"
 echo "  \"${ENODE_URL}\"," &>>permissioned-nodes.json
 
 PUBKEY=`bootnode -nodekey qdata/dd7/geth/nodekey -writeaddress`
-ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:$((PORT+6))"'?discport=0&raftport='"$((RAFT_PORT+6))"
+ENODE_URL='enode://'"${PUBKEY}@127.0.0.6:$((PORT+6))"'?discport=0&raftport='"$((RAFT_PORT+6))"
 echo "  \"${ENODE_URL}\"" &>>permissioned-nodes.json
 
 echo ']' &>>permissioned-nodes.json
