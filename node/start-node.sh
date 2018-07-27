@@ -26,7 +26,11 @@ if [ "$CONFIRMED"x != "y"x ]; then
 fi
 echo "Confirmed"
 echo '----------------------------------------------------------------------------'
+
 echo "Start to run node..."
+# Init Quorum node
+geth --datadir qdata/dd init ../genesis.json
+
 # Start Constellation node
 rm -f qdata/con/tm.ipc
 CMD="constellation-node --url=https://$HOST_IP:$CONSTE_PORT/ --port=$CONSTE_PORT --workdir=qdata/con --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://$CLUSTER_IP:$CLUS_CON_PORT/"
