@@ -12,6 +12,6 @@ chmod +x ./cluster/gene_enodes.sh
 chmod +x ./node/gene_key.sh
 chmod +x ./node/start_node.sh
 
-chmod +x ./common/write_public.sh
-chmod +x ./common/write_private.sh
-chmod +x ./common/read_data.sh
+chmod +x ./utl/write_public.sh
+chmod +x ./utl/write_private.sh
+chmod +x ./utl/read_data.sh
