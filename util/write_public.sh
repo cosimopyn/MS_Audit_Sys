@@ -1,8 +1,8 @@
 #!/bin/bash
 
-TYPE=`jq -r '.TYPE' config-utl.json`
-CON_DD=`jq -r '.CON_DD' config-utl.json`
-QUO_DD=`jq -r '.QUO_DD' config-utl.json`
+TYPE=`jq -r '.TYPE' config-util.json`
+CON_DD=`jq -r '.CON_DD' config-util.json`
+QUO_DD=`jq -r '.QUO_DD' config-util.json`
 
 DATE=`date -d today +"%Y-%m-%d"`
 EXIST_DATE=`tail -n 1 .addresses.dat | cut -b 1-10`
