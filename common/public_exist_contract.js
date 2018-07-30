@@ -9,3 +9,4 @@ var simpleContract = web3.eth.contract(abi);
 var simple = simpleContract.at(address);
 
 simple.put(mess);
+console.log(simple.address);
