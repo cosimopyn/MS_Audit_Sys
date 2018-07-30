@@ -32,7 +32,7 @@ fi
 
 mkdir -p qdata/logs
 echo "[*] Starting Constellation nodes"
-./constellation-start.sh
+./constellation_start.sh
 
 echo "[*] Starting Ethereum nodes with ChainID and NetworkId of $NETWORK_ID"
 set -v
