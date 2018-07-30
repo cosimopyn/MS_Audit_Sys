@@ -50,7 +50,7 @@ cp keys/key8 qdata/dd7/keystore
 
 echo "Generating enode urls..."
 touch permissioned-nodes.json
-./gene-enodes.sh
+./gene_enodes.sh
 
 echo "Init nodes..."
 cp permissioned-nodes.json qdata/dd1/static-nodes.json
