@@ -27,7 +27,7 @@ bootnode -genkey qdata/dd/geth/nodekey
 # private account key file
 echo '----------------------------------------------------------------------------'
 echo 'Next you need to enter your Etheruem password (you can use an empty one)'
-echo '[*] Please remember to save it in \"pw.data\" file later for login'
+echo '[*] Please remember to save it in \"pw.dat\" file later for login'
 geth --keystore qdata/dd/keystore/ account new
 # enode url
 PUBKEY=`bootnode -nodekey qdata/dd/geth/nodekey -writeaddress`
