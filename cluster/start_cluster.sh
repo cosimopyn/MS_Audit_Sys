@@ -23,12 +23,12 @@ set -u
 set -e
 
 NETWORK_ID=$(cat ../genesis.json | grep chainId | awk -F " " '{print $2}' | awk -F "," '{print $1}')
-echo " Chain Id is $NETWORK_ID"
-if [ $NETWORK_ID -eq 1 ]
-then
-	echo "  Quorum should not be run with a chainId of 1 (Ethereum mainnet)"
-        echo "  please set the chainId in the genensis.json to another value "
-	echo "  1337 is the recommend ChainId for Geth private clients."
+echo "Chain Id is $NETWORK_ID"
+if [ $NETWORK_ID -eq 1 ]; then
+  echo "Quorum should not be run with a chainId of 1 (Ethereum mainnet)"
+  echo "Please set the chainId in the genensis.json to another value "
+  echo "1337 is the recommend ChainId for Geth private clients."
+  exit
 fi
 
 mkdir -p ${QDATA_DIR}/logs
