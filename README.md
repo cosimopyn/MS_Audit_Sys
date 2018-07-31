@@ -10,7 +10,7 @@ MS Blockchain Audit System with Quorum
 - Start a cluster:  
 `cd cluster`  
 `./init_cluster.sh`  
-start a cluster:  
+start a normal cluster:  
 `./start_cluster.sh`  
 or start a permissioned cluster:  
 `./start_cluster_permission.sh`
