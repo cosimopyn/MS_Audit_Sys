@@ -6,5 +6,6 @@
     "RAFT_PORT":        50401,
     "CONSTE_PORT":      9001,
     "CLUSTER_IP":       "172.16.1.5",
-    "CLUS_CON_PORT":    9001
+    "CLUS_CON_PORT":    9001,
+    "QDATA_DIR":        "../../.qdata"
 }
