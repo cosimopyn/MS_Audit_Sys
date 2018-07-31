@@ -35,10 +35,15 @@ geth --keystore ${QDATA_DIR}/dd/keystore/ account new
 # enode url
 PUBKEY=`bootnode -nodekey ${QDATA_DIR}/dd/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:${PORT}"'?discport=0&raftport='"${RAFT_PORT}"
-# echo "Your ENode URL is: $ENODE_URL"
-echo '[*] Please use ipc to login in any node of the blockchain network instead of http '
-echo '[*] Run > raft.addPeer("'$ENODE_URL'");'
-echo '[*] And then get RAFT_ID and edit "config.json" file' 
+echo 'Your ENode URL is:'
+echo "$ENODE_URL"
+echo '[*] Please login in any node of the blockchain network'
+echo "Run ./read_data.sh $ENODE_URL"
+echo 'Then get RAFT ID of this node, and edit "config.json" file' 
+
+#echo '[*] Please use ipc to login in any node of the blockchain network instead of http '
+#echo '[*] Run > raft.addPeer("'$ENODE_URL'");'
+#echo '[*] And then get RAFT ID and edit "config.json" file' 
 echo '----------------------------------------------------------------------------'
 echo 'Done'
 
