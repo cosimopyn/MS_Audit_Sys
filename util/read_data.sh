@@ -40,8 +40,12 @@ EOF`
     raft.addPeer("$3");
     exit;
 EOF`
-  RES=`echo $OUT  | cut -d '>' -f 2`
-  echo "RADT ID of the new node is:$RES"
+  RES=`echo $OUT | cut -d '>' -f 2 | cut -d ' ' -f 2`
+  if [ "$RES"x == ""x ]; then
+    echo 'Wrong Enode URL. Please check.
+  else
+    echo "RADT ID of the new node is:$RES"
+  fi
   
   # wrong option
   else
