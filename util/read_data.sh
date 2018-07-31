@@ -11,7 +11,7 @@ function show_help()
   echo "            -help                       Show help"
   echo "            -data                       Get data in the blockchain"
   echo "                    --day    <YYYY-MM-DD>      Search by date"
-  echo "                    --addr   <Address Hash>    Search by address hash"
+  echo "                    --addr   <Address_Hash>    Search by address hash"
 
 }
 
