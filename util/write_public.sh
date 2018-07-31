@@ -11,9 +11,9 @@ fi
 
 DATE=`date -d today +"%Y-%m-%d"`
 EXIST_DATE=`tail -n 1 ${QDATA_DIR}/.addresses.dat | cut -b 1-10`
-ADDRESS=`tail -n 1 ${QDATA_DIR}/.addresses.dat | cut -d " " -f 2`
 
-if [ "$EXIST_DATE"x == "$DATE"x ] && [ "$ADDRESS"x != ""x ]; then
+if [ "$EXIST_DATE"x == "$DATE"x ]; then
+  ADDRESS=`tail -n 1 ${QDATA_DIR}/.addresses.dat | cut -d " " -f 2`
   sed -i -e "s/var mess.*/var mess=\"$1\";/" public_exist_contract.js
   sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" public_exist_contract.js
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"public_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
@@ -31,12 +31,12 @@ else
   while $LOOP; do
     sleep 1
     LOOP=false
-    ITER=$((ITER+1))  
-    echo 'Waiting to mine the block'
+    ITER=$((ITER+1))
     OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"get_contract_addr.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
     ADDRESS=`echo $OUT | cut -d " " -f 1`
-    if [ "$ADDRESS"x != "err:"x ]; then
-      LOOP=false
+    if [ "$ADDRESS"x == "err:"x ]; then
+      LOOP=true
+      echo 'Waiting to mine the block'
     fi
     if [ $ITER -eq 30 ]; then
       echo "Something goes wrong while mining. Please check logs."
