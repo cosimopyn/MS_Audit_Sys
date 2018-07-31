@@ -4,19 +4,23 @@ MS Blockchain Audit System with Quorum
 - How to start:  
 `git clone https://github.com/cosimoth/MS_Audit_Sys.git`  
 `cd MS_Audit_Sys`  
-`sh ./init-env.sh`  
-`./install-dep.sh`
+`sh ./init_env.sh`  
+`./install_dep.sh`
 
 - Start a cluster:  
 `cd cluster`  
-`./init-cluster.sh`  
+`./init_cluster.sh`  
 start a cluster:  
-`./start-cluster.sh`  
+`./start_cluster.sh`  
 or start a permissioned cluster:  
-`./start-cluster-permission.sh`
+`./start_cluster_permission.sh`
 
 - Start a node:  
 `cd node`  
-`./gene-key.sh`  
-Then get RAFT ID 
-`./start-node.sh`  
+`./gene_key.sh`  
+Then get RAFT ID and edit > config.json  
+`./start_node.sh`  
+
+- Stop a node
+killall geth bootnode constellation-node
+rm -rf MS_Audit_Sys .qdata
