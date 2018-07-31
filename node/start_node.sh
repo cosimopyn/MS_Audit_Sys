@@ -1,21 +1,23 @@
 #!/bin/bash
 
 echo "Confirm local config ..."
-RAFT_ID=`jq -r '.RAFT_ID' config.json`
-HOST_IP=`jq -r '.HOST_IP' config.json`
-PORT=`jq -r '.PORT' config.json`
-RAFT_PORT=`jq -r '.RAFT_PORT' config.json`
-RPC_PORT=`jq -r '.RPC_PORT' config.json`
-CONSTE_PORT=`jq -r '.CONSTE_PORT' config.json`
+RAFT_ID=`jq -r '.RAFT_ID' ./config.json`
+HOST_IP=`jq -r '.HOST_IP' ./config.json`
+PORT=`jq -r '.PORT' ./config.json`
+RAFT_PORT=`jq -r '.RAFT_PORT' ./config.json`
+RPC_PORT=`jq -r '.RPC_PORT' ./config.json`
+CONSTE_PORT=`jq -r '.CONSTE_PORT' ./config.json`
+QDATA_DIR=`jq -r '.QDATA_DIR' ./config.json`
 echo "RAFT ID: $RAFT_ID (it should be generated on a node in the cluster)"
 echo "Host IP: $HOST_IP"
 echo "Port: $PORT"
 echo "RAFT Port: $RAFT_PORT"
 echo "RPC Port: $RPC_PORT"
+echo "QDATA Dir: $QDATA_DIR"
 echo "Constellation Port: $CONSTE_PORT"
 echo "Confirm cluster config ..."
-CLUSTER_IP=`jq -r '.CLUSTER_IP' config.json`
-CLUS_CON_PORT=`jq -r '.CLUS_CON_PORT' config.json`
+CLUSTER_IP=`jq -r '.CLUSTER_IP' ./config.json`
+CLUS_CON_PORT=`jq -r '.CLUS_CON_PORT' ./config.json`
 echo "Cluste IP: $CLUSTER_IP"
 echo "Cluster Constellation Port: $CLUS_CON_PORT"
 
@@ -29,19 +31,19 @@ echo '--------------------------------------------------------------------------
 
 echo "Start to run node..."
 # Init Quorum node
-geth --datadir qdata/dd init ../genesis.json
+geth --datadir ${QDATA_DIR}/dd init ../genesis.json
 
 # Start Constellation node
-rm -f qdata/con/tm.ipc
-CMD="constellation-node --url=https://$HOST_IP:$CONSTE_PORT/ --port=$CONSTE_PORT --workdir=qdata/con --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://$CLUSTER_IP:$CLUS_CON_PORT/"
-echo "$CMD >> qdata/logs/constellation.log 2>&1 &"
-$CMD >> "qdata/logs/constellation.log" 2>&1 &
+rm -f ${QDATA_DIR}/con/tm.ipc
+CMD="constellation-node --url=https://$HOST_IP:$CONSTE_PORT/ --port=$CONSTE_PORT --workdir=${QDATA_DIR}/con --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://$CLUSTER_IP:$CLUS_CON_PORT/"
+echo "$CMD >> ${QDATA_DIR}/logs/constellation.log 2>&1 &"
+$CMD >> "${QDATA_DIR}/logs/constellation.log" 2>&1 &
 
 DOWN=true
 while $DOWN; do
     sleep 0.1
     DOWN=false
-    if [ ! -S "qdata/con/tm.ipc" ]; then
+    if [ ! -S "${QDATA_DIR}/con/tm.ipc" ]; then
         DOWN=true
     fi
 done
@@ -60,9 +62,9 @@ fi
 # Start Quorum node
 ARGS="--nodiscover -verbosity 5 --networkid $NETWORK_ID --raft --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --emitcheckpoints"
 # --permissioned
-PRIVATE_CONFIG=qdata/con/tm.ipc nohup geth --datadir qdata/dd $ARGS --raftjoinexisting $RAFT_ID --raftport $RAFT_PORT --rpcport $RPC_PORT --port $PORT --unlock 0 --password ../pw.dat 2>>qdata/logs/quorum.log &
+PRIVATE_CONFIG=${QDATA_DIR}/con/tm.ipc nohup geth --datadir ${QDATA_DIR}/dd $ARGS --raftjoinexisting $RAFT_ID --raftport $RAFT_PORT --rpcport $RPC_PORT --port $PORT --unlock 0 --password ../pw.dat 2>>${QDATA_DIR}/logs/quorum.log &
 echo "Established Quorum node from host($HOST_IP:$PORT) to Network ($CLUSTER_IP)"
 echo '----------------------------------------------------------------------------'
 echo "Done"
-echo "Please run $ geth attach qdata/dd/geth.ipc to attach this node"
+echo "Please run $ geth attach ${QDATA_DIR}/dd/geth.ipc to attach this node"
 
