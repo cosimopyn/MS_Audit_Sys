@@ -17,7 +17,8 @@ QDATA_DIR=`jq -r '.QDATA_DIR' ./config-util.json`
 CON_DD=`jq -r '.CON_DD' ./config-util.json`
 QUO_DD=`jq -r '.QUO_DD' ./config-util.json`
 ATTACHPARAMETER="ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc"
-
+ABI=[{"constant":true,"inputs":[{"name":"idx","type":"uint256"}],"name":"get_record","outputs":[{"name":"retVal","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_num","outputs":[{"name":"num","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"record","type":"string"}],"name":"put","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"get_info","outputs":[{"name":"info","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"_info","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"_dataStore","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"info","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]
+    
 if [ "$1"x == "-peer"x ]; then
    # PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF | grep "Data: " | sed "s/Data: //"
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
@@ -34,17 +35,37 @@ EOF`
   RES=`echo $OUT  | cut -d '>' -f 2`
   echo "Current block number is:$RES"
 elif [ "$1"x == "-data"x ]; then
+
   if [ "$2"x == "--day"x ]; then
     echo "day"
   elif [ "$2"x == "--addr"x ]; then
   
     OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
-    var simpleContract = web3.eth.contract([{"constant":true,"inputs":[{"name":"idx","type":"uint256"}],"name":"get_record","outputs":[{"name":"retVal","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_num","outputs":[{"name":"num","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"record","type":"string"}],"name":"put","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"get_info","outputs":[{"name":"info","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"_info","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"_dataStore","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"info","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]);
+    var simpleContract = web3.eth.contract($ABI);
     var simple = simpleContract.at("$3");
     console.log(simple.get_info());
     exit;
 EOF`
-    RES=`echo $OUT  | cut -d '>' -f 4`
+    RES=`echo $OUT  | cut -d '>' -f 4 | cut -d ' ' -f 1`
+    
+    if [ "$RES"x == "Error:"x ]; then
+      echo 'Contract address is wrong. Please check'
+    else
+      echo "Contract info is $RES"
+      OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
+      var simpleContract = web3.eth.contract($ABI);
+      var simple = simpleContract.at("$3");
+      console.log(simple.get_num());
+      exit;
+EOF`
+      CONTRACT_NUM=`echo $OUT  | cut -d '>' -f 4 | cut -d ' ' -f 1`
+      echo "It consist $CONTRACT_NUM records:"
+      for ((i=0;i<=CONTRACT_NUM;i++))
+      do
+        echo $i
+      done
+    fi
+    
     # echo "Current block number is:$RES"
 
   else
