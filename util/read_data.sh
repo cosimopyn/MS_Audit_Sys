@@ -5,7 +5,9 @@ function show_help()
   echo "USAGE: "
   echo "./read_data command [option] [argument]"
   echo "            -block                      Get current block number"
-  echo "            -peer                       Get current peer number in the private network (excepet self)"
+  echo "            -peer                       Operation on peers in the private network"
+  echo "                    --num                      Get current peer number (excepet self)"
+  echo "                    --add    <ENODE_URL>       Add a peer with its Enode URL"
   echo "            -help                       Show help"
   echo "            -data                       Get data in the blockchain"
   echo "                    --day    <YYYY-MM-DD>      Date"
@@ -21,13 +23,30 @@ ABI='[{"constant":true,"inputs":[{"name":"idx","type":"uint256"}],"name":"get_re
 
 # -peer command
 if [ "$1"x == "-peer"x ]; then
-   # PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF | grep "Data: " | sed "s/Data: //"
-  OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
-  net.peerCount;
-  exit;
+  
+  # --num option
+  if [ "$2"x == "--num"x ]; then
+    # PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF | grep "Data: " | sed "s/Data: //"
+    OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
+    net.peerCount;
+    exit;
 EOF`
   RES=`echo $OUT  | cut -d '>' -f 2`
   echo "Current peer number (except self) is:$RES"
+  
+  # --add option
+  elif [ "$2"x == "--add"x ]; then
+    OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
+    raft.addPeer("$3");
+    exit;
+EOF`
+  RES=`echo $OUT  | cut -d '>' -f 2`
+  echo "RADT ID of the new node is:$RES"
+  
+  # wrong option
+  else
+    show_help
+  fi
   
 # -block command
 elif [ "$1"x == "-block"x ]; then
