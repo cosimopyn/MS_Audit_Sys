@@ -41,7 +41,7 @@ EOF`
     exit;
 EOF`
   RES=`echo $OUT | cut -d '>' -f 2 | cut -d ' ' -f 2`
-  if [ "$RES"x == ""x ]; then
+  if [ "$RES"x == "Error:"x ]; then
     echo 'Wrong Enode URL. Please check.'
   else
     echo "RADT ID of the new node is:$RES"
