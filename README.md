@@ -18,7 +18,7 @@ or start a permissioned cluster:
 - Start a node:  
 `cd node`  
 `./gene_key.sh`  
-Then get RAFT ID and edit > config.json  
+Then get RAFT ID and edit "config.json"  
 `./start_node.sh`  
 
 - Stop a node
