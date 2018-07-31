@@ -26,21 +26,23 @@ else
   TXN=`echo $OUT | cut -d " " -f 1`
   sed -i -e "s/var TXNHash.*/var TXNHash=\"$TXN\";/" get_contract_addr.js
   
-#  DOWN=true
-#  ITER=0
-#  while $DOWN; do
+  LOOP=true
+  ITER=0
+  while $LOOP; do
     sleep 1
-#    DOWN=false
-#    ITER=$((ITER+1))
-#    ADDRESS=`PRIVATE_CONFIG=${QDATA_DIR}/c2/tm.ipc geth --exec "loadScript(\"get_contract_addr.js\")" attach ipc:${QDATA_DIR}/dd2/geth.ipc`
-#    if [ ! -S "${QDATA_DIR}/con/tm.ipc" ] || [ $ITER -eq 100 ]; then
-#      DOWN=true
-#    fi
-#  done
+    LOOP=false
+    ITER=$((ITER+1))   
+    OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"get_contract_addr.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
+    ADDRESS=`echo $OUT | cut -d " " -f 1`
+    if [ "$ADDRESS"x != "err:"x ]; then
+      LOOP=false
+    fi
+    if [ $ITER -eq 30 ]; then
+      echo "Something goes wrong while mining. Please check logs."
+      exit
+    fi
+  done
 
-  OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"get_contract_addr.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
-  ADDRESS=`echo $OUT | cut -d " " -f 1`
-  
   sed -i -e "s/var mess.*/var mess=\"$1\";/" public_exist_contract.js
   sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" public_exist_contract.js
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"public_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
