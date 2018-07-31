@@ -4,12 +4,16 @@ QDATA_DIR=`jq -r '.QDATA_DIR' ./config-util.json`
 CON_DD=`jq -r '.CON_DD' ./config-util.json`
 QUO_DD=`jq -r '.QUO_DD' ./config-util.json`
 
-DATE=`date -d today +"%Y-%m-%d"`
-EXIST_DATE=`tail -n 1 .addresses.dat | cut -b 1-10`
+if [ ! -S "${QDATA_DIR}/.addresses.dat" ]; then
+  touch ${QDATA_DIR}/.addresses.dat
+  echo "File ${QDATA_DIR}/.addresses.dat does not exit. Created."
+fi
 
-if [ "$EXIST_DATE"x == "$DATE"x ];
-then
-  ADDRESS=`tail -n 1 .addresses.dat | cut -d " " -f 2`
+DATE=`date -d today +"%Y-%m-%d"`
+EXIST_DATE=`tail -n 1 ${QDATA_DIR}/.addresses.dat | cut -b 1-10`
+
+if [ "$EXIST_DATE"x == "$DATE"x ]; then
+  ADDRESS=`tail -n 1 ${QDATA_DIR}/.addresses.dat | cut -d " " -f 2`
   sed -i -e "s/var mess.*/var mess=\"$1\";/" public_exist_contract.js
   sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" public_exist_contract.js
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"public_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
@@ -40,5 +44,5 @@ else
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"public_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
   
   echo "New contract created and record stored. Address is $ADDRESS. Please use to get record"
-  echo "$DATE $ADDRESS" &>> .addresses.dat
+  echo "$DATE $ADDRESS" &>> ${QDATA_DIR}/.addresses.dat
 fi
