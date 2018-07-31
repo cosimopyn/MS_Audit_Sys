@@ -56,7 +56,7 @@ EOF`
     RES=`echo $OUT  | cut -d '>' -f 4 | cut -d ' ' -f 2`
     
     if [ "$RES"x == "Error:"x ]; then
-      echo 'Contract address is wrong. Please check'
+      echo 'Contract address is wrong. Please check.'
     else
       echo "Contract info is $RES"
       OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
@@ -67,7 +67,7 @@ EOF`
 EOF`
       CONTRACT_NUM=`echo $OUT  | cut -d '>' -f 4 | cut -d ' ' -f 2`
       echo "It contains $CONTRACT_NUM records:"
-      CONTRACT_NUM=10
+
       for ((i=0;i<CONTRACT_NUM;i++))
       do
         OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
