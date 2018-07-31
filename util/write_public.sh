@@ -31,7 +31,8 @@ else
   while $LOOP; do
     sleep 1
     LOOP=false
-    ITER=$((ITER+1))   
+    ITER=$((ITER+1))  
+    echo 'Waiting to mine the block'
     OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"get_contract_addr.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
     ADDRESS=`echo $OUT | cut -d " " -f 1`
     if [ "$ADDRESS"x != "err:"x ]; then
