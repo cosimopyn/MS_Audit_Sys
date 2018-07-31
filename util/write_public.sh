@@ -17,7 +17,9 @@ if [ "$EXIST_DATE"x == "$DATE"x ]; then
   sed -i -e "s/var mess.*/var mess=\"$1\";/" public_exist_contract.js
   sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" public_exist_contract.js
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"public_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
-  echo "Record stored. Address is $ADDRESS. Please use to get record"
+  echo 'Record stored.'
+  echo "Contract address is $ADDRESS."
+  echo 'Please use ./read_data to get record'
 else
   sed -i -e "s/var mess.*/var mess=\"$DATE\";/" public_new_contract.js
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"public_new_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
@@ -43,6 +45,8 @@ else
   sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" public_exist_contract.js
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"public_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
   
-  echo "New contract created and record stored. Address is $ADDRESS. Please use to get record"
+  echo 'New contract created and record stored.'
+  echo "Contract address is $ADDRESS."
+  echo 'Please use ./read_data to get record'
   echo "$DATE $ADDRESS" &>> ${QDATA_DIR}/.addresses.dat
 fi
