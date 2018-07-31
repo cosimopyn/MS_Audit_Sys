@@ -21,6 +21,6 @@ or start a permissioned cluster:
 Then get RAFT ID and edit "config.json"  
 `./start_node.sh`  
 
-- Stop a node
-killall geth bootnode constellation-node
-rm -rf MS_Audit_Sys .qdata
+- Stop a node  
+`killall geth bootnode constellation-node`  
+`rm -rf MS_Audit_Sys .qdata`  
