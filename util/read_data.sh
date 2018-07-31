@@ -19,18 +19,18 @@ QUO_DD=`jq -r '.QUO_DD' ./config-util.json`
 ATTACHPARAMETER="ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc"
 
 if [ "$1"x == "-peer"x ]; then
-   # PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER << EOF | grep "Data: " | sed "s/Data: //"
-  OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER << EOF
+   # PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF | grep "Data: " | sed "s/Data: //"
+  OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
   net.peerCount;
   exit;
-  EOF`
+EOF`
   RES=`echo $OUT  | cut -d '>' -f 2`
   echo "Current peer number (except self) is:$RES"
 elif [ "$1"x == "-block"x ]; then
-  OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER << EOF
+  OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
   eth.blockNumber;
   exit;
-  EOF`
+EOF`
   RES=`echo $OUT  | cut -d '>' -f 2`
   echo "Current block number is:$RES"
 elif [ "$1"x == "-data"x ]; then
@@ -38,12 +38,12 @@ elif [ "$1"x == "-data"x ]; then
     echo "day"
   elif [ "$2"x == "--addr"x ]; then
   
-    OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER << EOF
+    OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
     var simpleContract = web3.eth.contract([{"constant":true,"inputs":[{"name":"idx","type":"uint256"}],"name":"get_record","outputs":[{"name":"retVal","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_num","outputs":[{"name":"num","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"record","type":"string"}],"name":"put","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"get_info","outputs":[{"name":"info","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"_info","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"_dataStore","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"info","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]);
     var simple = simpleContract.at("$3");
     console.log(simple.get_info());
     exit;
-    EOF`
+EOF`
     RES=`echo $OUT  | cut -d '>' -f 4`
     # echo "Current block number is:$RES"
 
