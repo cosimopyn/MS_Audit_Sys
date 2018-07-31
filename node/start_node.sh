@@ -66,5 +66,4 @@ PRIVATE_CONFIG=${QDATA_DIR}/con/tm.ipc nohup geth --datadir ${QDATA_DIR}/dd $ARG
 echo "Established Quorum node from host($HOST_IP:$PORT) to Network ($CLUSTER_IP)"
 echo '----------------------------------------------------------------------------'
 echo "Done"
-echo "Please run $ geth attach ${QDATA_DIR}/dd/geth.ipc to attach this node"
-
+echo 'To attach to the Geth node, pelase run '"geth attach ${QDATA_DIR}/dd/geth.ipc" 
