@@ -4,7 +4,7 @@ QDATA_DIR=`jq -r '.QDATA_DIR' ./config-util.json`
 CON_DD=`jq -r '.CON_DD' ./config-util.json`
 QUO_DD=`jq -r '.QUO_DD' ./config-util.json`
 
-if [ ! -S "${QDATA_DIR}/.addresses.dat" ]; then
+if [ ! -f "${QDATA_DIR}/.addresses.dat" ]; then
   touch ${QDATA_DIR}/.addresses.dat
   echo "File ${QDATA_DIR}/.addresses.dat does not exit. Created."
 fi
