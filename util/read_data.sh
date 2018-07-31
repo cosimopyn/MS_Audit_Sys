@@ -10,8 +10,8 @@ function show_help()
   echo "                    --add    <ENODE_URL>       Add a peer with its Enode URL"
   echo "            -help                       Show help"
   echo "            -data                       Get data in the blockchain"
-  echo "                    --day    <YYYY-MM-DD>      Date"
-  echo "                    --addr   <Address Hash>    Address hash"
+  echo "                    --day    <YYYY-MM-DD>      Search by date"
+  echo "                    --addr   <Address Hash>    Search by address hash"
 
 }
 
