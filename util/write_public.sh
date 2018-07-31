@@ -20,17 +20,10 @@ else
   TXN=`echo $OUT | cut -d " " -f 1`
   sed -i -e "s/var TXNHash.*/var TXNHash=\"$TXN\";/" get_contract_addr.js
   
-  OUT=`PRIVATE_CONFIG=../$TYPE/qdata/$CON_DD/tm.ipc geth --exec "loadScript(\"get_contract_addr.js\")" attach ipc:../$TYPE/qdata/$QUO_DD/geth.ipc`
-  ADDRESS=`echo $OUT | cut -d " " -f 1`
-  
-  sed -i -e "s/var mess.*/var mess=\"$1\";/" public_exist_contract.js
-  sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" public_exist_contract.js
-  OUT=`PRIVATE_CONFIG=../$TYPE/qdata/$CON_DD/tm.ipc geth --exec "loadScript(\"public_exist_contract.js\")" attach ipc:../$TYPE/qdata/$QUO_DD/geth.ipc`
-  
 #  DOWN=true
 #  ITER=0
 #  while $DOWN; do
-#    sleep 0.1
+    sleep 1
 #    DOWN=false
 #    ITER=$((ITER+1))
 #    ADDRESS=`PRIVATE_CONFIG=../cluster/qdata/c2/tm.ipc geth --exec "loadScript(\"get_contract_addr.js\")" attach ipc:../cluster/qdata/dd2/geth.ipc`
@@ -38,6 +31,13 @@ else
 #      DOWN=true
 #    fi
 #  done
+
+  OUT=`PRIVATE_CONFIG=../$TYPE/qdata/$CON_DD/tm.ipc geth --exec "loadScript(\"get_contract_addr.js\")" attach ipc:../$TYPE/qdata/$QUO_DD/geth.ipc`
+  ADDRESS=`echo $OUT | cut -d " " -f 1`
+  
+  sed -i -e "s/var mess.*/var mess=\"$1\";/" public_exist_contract.js
+  sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" public_exist_contract.js
+  OUT=`PRIVATE_CONFIG=../$TYPE/qdata/$CON_DD/tm.ipc geth --exec "loadScript(\"public_exist_contract.js\")" attach ipc:../$TYPE/qdata/$QUO_DD/geth.ipc`
   
   echo "New contract created and record stored. Address is $ADDRESS. Please use to get record"
   echo "$DATE $ADDRESS" &>> .addresses.dat
