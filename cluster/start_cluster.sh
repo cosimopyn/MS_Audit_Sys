@@ -47,5 +47,5 @@ PRIVATE_CONFIG=${QDATA_DIR}/c6/tm.ipc nohup geth --datadir ${QDATA_DIR}/dd6 $ARG
 PRIVATE_CONFIG=${QDATA_DIR}/c7/tm.ipc nohup geth --datadir ${QDATA_DIR}/dd7 $ARGS --raftport $((RAFT_PORT+6)) --rpcport $((RPC_PORT+6)) --port $((PORT+6)) --unlock 0 --password ../pw.dat 2>>${QDATA_DIR}/logs/quorum7.log &
 set +v
 
-echo 'All nodes configured. for logs, see '"${QDATA_DIR}/logs" 
+echo 'All nodes configured. For logs, see '"${QDATA_DIR}/logs" 
 echo 'To attach to the Geth node, pelase run '"geth attach ${QDATA_DIR}/dd1/geth.ipc" 
