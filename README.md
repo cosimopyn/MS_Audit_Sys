@@ -23,4 +23,4 @@ Then get RAFT ID and edit "config.json"
 
 - Stop a node  
 `killall geth bootnode constellation-node`  
-`rm -rf MS_Audit_Sys .qdata`  
+`rm -rf Distributed_Audit .qdata`  
