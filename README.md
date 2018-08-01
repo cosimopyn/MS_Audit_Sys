@@ -1,8 +1,8 @@
-# MS Blockchain Audit System
-MS Blockchain Audit System with Quorum  
+# Blockchain Audit System
+Blockchain Audit System with Quorum  
 
 - How to start:  
-`git clone https://github.com/cosimoth/MS_Audit_Sys.git`  
+`git clone https://github.com/cosimoth/Distributed_Audit.git`  
 `cd MS_Audit_Sys`  
 `sh ./init_env.sh`  
 `./install_dep.sh`
