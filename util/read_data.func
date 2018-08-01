@@ -2,16 +2,17 @@
 
 function show_help()
 {
-  echo "USAGE: "
-  echo "./read_data command [option] [argument]"
-  echo "            -block                      Get current block number"
-  echo "            -peer                       Operation on peers in the private network"
-  echo "                    --num                      Get current peer number (excepet self)"
-  echo "                    --add    <ENODE_URL>       Add a peer with its Enode URL"
-  echo "            -help                       Show help"
-  echo "            -data                       Get data in the blockchain"
-  echo "                    --day    <YYYY-MM-DD>      Search by date"
-  echo "                    --addr   <Address_Hash>    Search by address hash"
+  echo "Version: 0.3"
+  echo "Usage: "
+  echo "./run command [option] [argument]"
+  echo "      -block                      Get current block number"
+  echo "      -peer                       Operation on peers in the private network"
+  echo "              --num                      Get current peer number (excepet self)"
+  echo "              --add    <ENODE_URL>       Add a peer with its Enode URL"
+  echo "      -help                       Show help"
+  echo "      -data                       Get data in the blockchain"
+  echo "              --day    <YYYY-MM-DD>      Search by date"
+  echo "              --addr   <Address_Hash>    Search by address hash"
 
 }
 
