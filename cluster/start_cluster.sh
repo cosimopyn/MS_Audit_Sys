@@ -6,12 +6,16 @@ RAFT_PORT=`jq -r '.RAFT_PORT' config-cluster.json`
 RPC_PORT=`jq -r '.RPC_PORT' config-cluster.json`
 CONSTE_PORT=`jq -r '.CONSTE_PORT' config-cluster.json`
 QDATA_DIR=`jq -r '.QDATA_DIR' ./config-cluster.json`
+HOST_IP_BASE=`jq -r '.HOST_IP_BASE' ./config-cluster.json`
+HOST_IP_OFFSET=`jq -r '.HOST_IP_OFFSET' ./config-cluster.json`
 
 echo "Host IP: $HOST_IP"
 echo "Port: $PORT"
 echo "RAFT Port: $RAFT_PORT"
 echo "RPC Port: $RPC_PORT"
 echo "Constellation Port: $CONSTE_PORT"
+echo "Host IP Base: $HOST_IP_BASE"
+echo "Host IP Offset: $HOST_IP_OFFSET"
 
 read -p "Is it right?(y/n): " CONFIRMED
 if [ "$CONFIRMED"x != "y"x ]; then
