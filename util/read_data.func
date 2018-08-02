@@ -4,7 +4,7 @@ function show_help()
 {
   echo "Version: 0.3"
   echo "Usage: "
-  echo "./run command [option] [argument]"
+  echo "./run command [option] [arguments]"
   echo "      -block                      Get current block number"
   echo "      -peer                       Operation on peers in the private network"
   echo "              --num                      Get current peer number (excepet self)"
