@@ -50,6 +50,6 @@ else
   
   echo 'New contract created and record stored.'
   echo "Contract address is $ADDRESS"
-  echo 'To get record, please use ./read_data'
+  echo 'To get record, please use ./run'
   echo "$DATE $ADDRESS" &>> ${QDATA_DIR}/.addresses.dat
 fi
