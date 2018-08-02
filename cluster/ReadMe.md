@@ -8,5 +8,5 @@ VM IP configuration Setting:
 1. Azure -> VM -> Network Interface  
 2. Enable IP forwarding  
 3. Add IP configuration with a Static IP address
-4. Add IP addresses to VM OS 
+4. Add IP addresses to VM OS: 
 https://docs.microsoft.com/zh-cn/azure/virtual-network/virtual-network-multiple-ip-addresses-portal#os-config
