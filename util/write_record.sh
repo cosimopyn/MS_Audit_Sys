@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ./read_data.func
+
 QDATA_DIR=`jq -r '.QDATA_DIR' ./config-util.json`
 CON_DD=`jq -r '.CON_DD' ./config-util.json`
 QUO_DD=`jq -r '.QUO_DD' ./config-util.json`
@@ -21,5 +23,5 @@ if [ "$EXIST_DATE"x == "$DATE"x ]; then
   echo "Contract address is $ADDRESS"
   echo 'To get record, please use ./read_data '
 else
-  new_contract_get_addr() $INFO $QDATA_DIR $CON_DD= $QUO_DD
+  new_contract_get_addr $INFO $QDATA_DIR $CON_DD= $QUO_DD
 fi
