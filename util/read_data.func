@@ -88,7 +88,7 @@ function new_contract_get_addr()
       exit
     fi
   done
-  echo "$DATE $ADDRESS" &>> ${QDATA_DIR}/.addresses.dat
+  echo "Customer$((RAFT_ID-7)) $ADDRESS" &>> ${QDATA_DIR}/.addresses.dat
   
   echo "New contract created, contract address is $ADDRESS"
   echo "To start the new node, please run ./start_node.sh $RAFT_ID $ADDRESS"
