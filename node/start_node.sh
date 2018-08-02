@@ -1,7 +1,12 @@
 #!/bin/bash
 
+if [ $# -lt 2 ]; then
+  echo 'Lack of arguments. Please check output of Server.'
+  exit
+fi
+
 echo "Confirm local config ..."
-RAFT_ID=$2
+RAFT_ID=$1
 HOST_IP=`jq -r '.HOST_IP' ./config.json`
 PORT=`jq -r '.PORT' ./config.json`
 RAFT_PORT=`jq -r '.RAFT_PORT' ./config.json`
@@ -69,4 +74,4 @@ echo "Done"
 echo 'To attach to the Geth node, pelase run '"geth attach ${QDATA_DIR}/dd/geth.ipc" 
 
 touch ${QDATA_DIR}/.address.data
-echo "Customer$((RAFT_ID-7)) $ADDRESS" &>> ${QDATA_DIR}/.addresses.dat
+echo "Customer$((RAFT_ID-7)) $2" &>> ${QDATA_DIR}/.addresses.dat
