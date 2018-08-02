@@ -16,11 +16,11 @@ contract audit_store {
     return _data[idx];
   }
   
-  function get_num() constant public (uint num) {
+  function get_num() constant returns (uint num) {
     return _data.length;
   }
   
-  function get_info() constant public returns (string info) {
+  function get_info() constant returns (string info) {
     return _info;
   }
 }
