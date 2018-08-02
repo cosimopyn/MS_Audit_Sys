@@ -1,6 +1,9 @@
-# Cluster IP configuration
-Cluster need to own multiple private IPs  
-Setting:  
+# Multiple nodes on one VM
+Cluster needs to own multiple private IPs to start Constellation nodes.  
+In this case, "permissioned-nodes.json" and "static-nodes.json" only list IP of Node 1.
+We use `HOST_IP_BASE` and `HOST_IP_OFFSET` in "config-cluster.json" to define these IPs.  
+
+VM IP configuration Setting:  
 1. Azure -> VM -> Network Interface  
 2. Enable IP forwarding  
 3. Add IP configuration  
