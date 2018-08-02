@@ -33,14 +33,7 @@ EOF`
     echo 'Wrong Enode URL. Please check.'
   else
     echo "RADT ID of the new node is:$RES"
-    OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
-    var audit_contract=web3.eth.contract(${ABI});
-    var contract1=audit_contract.new("Customer$((RAFT_ID-7))", {from:web3.eth.accounts[0], data: ${BYTE}, gas: '4700000'});
-    console.log(contract1.address);
-    exit;
-EOF`
-    ADDRESS=`echo $OUT`
-    echo "Please run ./start_node.sh $RAFT_ID $ADDRESS"
+    new_contract_get_addr $RAFT_ID $QDATA_DIR $CON_DD $QUO_DD
   fi
   
   # wrong option
