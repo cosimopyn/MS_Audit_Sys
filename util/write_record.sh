@@ -6,10 +6,10 @@ QUO_DD=`jq -r '.QUO_DD' ./config-util.json`
 
 if [ ! -f "${QDATA_DIR}/.addresses.dat" ]; then
   touch ${QDATA_DIR}/.addresses.dat
-  echo "File ${QDATA_DIR}/.addresses.dat does not exit. Created."
+  echo "File ${QDATA_DIR}/.addresses.dat does not exit. Contact Server."
 fi
 
-DATE=`date -d today +"%Y-%m-%d"`
+CUSTOMER=`date -d today +"%Y-%m-%d"`
 EXIST_DATE=`tail -n 1 ${QDATA_DIR}/.addresses.dat | cut -b 1-10`
 
 if [ "$EXIST_DATE"x == "$DATE"x ]; then
