@@ -1,14 +1,14 @@
 #!/bin/bash
 
 echo "Confirm local config ..."
-RAFT_ID=`jq -r '.RAFT_ID' ./config.json`
+RAFT_ID=$2
 HOST_IP=`jq -r '.HOST_IP' ./config.json`
 PORT=`jq -r '.PORT' ./config.json`
 RAFT_PORT=`jq -r '.RAFT_PORT' ./config.json`
 RPC_PORT=`jq -r '.RPC_PORT' ./config.json`
 CONSTE_PORT=`jq -r '.CONSTE_PORT' ./config.json`
 QDATA_DIR=`jq -r '.QDATA_DIR' ./config.json`
-echo "RAFT ID: $RAFT_ID (it should be generated on a node in the cluster)"
+echo "RAFT ID: $RAFT_ID"
 echo "Host IP: $HOST_IP"
 echo "Port: $PORT"
 echo "RAFT Port: $RAFT_PORT"
@@ -67,3 +67,6 @@ echo "Established Quorum node from host($HOST_IP:$PORT) to Network ($CLUSTER_IP)
 echo '----------------------------------------------------------------------------'
 echo "Done"
 echo 'To attach to the Geth node, pelase run '"geth attach ${QDATA_DIR}/dd/geth.ipc" 
+
+touch ${QDATA_DIR}/.address.data
+echo "Customer$((RAFT_ID-7)) $ADDRESS" &>> ${QDATA_DIR}/.addresses.dat
