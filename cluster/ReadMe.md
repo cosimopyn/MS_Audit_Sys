@@ -1,4 +1,4 @@
-# Multiple nodes on one VM
+# Multiple-Nodes Cluster on Single VM
 Cluster needs to own multiple IPs to start Constellation nodes.  
 One IP would cause HandShake errors.  
 In this case, "permissioned-nodes.json" and "static-nodes.json" only list IP of Node 1.  
