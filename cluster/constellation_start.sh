@@ -6,6 +6,8 @@ RAFT_PORT=`jq -r '.RAFT_PORT' ./config-cluster.json`
 RPC_PORT=`jq -r '.RPC_PORT' ./config-cluster.json`
 CONSTE_PORT=`jq -r '.CONSTE_PORT' ./config-cluster.json`
 QDATA_DIR=`jq -r '.QDATA_DIR' ./config-cluster.json`
+HOST_IP_BASE=`jq -r '.HOST_IP_BASE' ./config-cluster.json`
+HOST_IP_OFFSET=`jq -r '.HOST_IP_OFFSET' ./config-cluster.json`
 
 set -u
 set -e
@@ -24,7 +26,8 @@ do
     	CMD="constellation-node --url=https://${HOST_IP}:${CUR_CONSTE_PORT}/ --port=${CUR_CONSTE_PORT} --workdir=$DDIR --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://${HOST_IP}:${CONSTE_PORT}/"
     else
     	# CMD="constellation-node --url=https://${HOST_IP}:${CUR_CONSTE_PORT}/ --port=${CUR_CONSTE_PORT} --workdir=$DDIR --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://${HOST_IP}:${CONSTE_PORT}/"
-    	CMD="constellation-node --url=https://127.0.0.$i:${CUR_CONSTE_PORT}/ --port=${CUR_CONSTE_PORT} --workdir=$DDIR --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://${HOST_IP}:${CONSTE_PORT}/"
+    	# CMD="constellation-node --url=https://127.0.0.$i:${CUR_CONSTE_PORT}/ --port=${CUR_CONSTE_PORT} --workdir=$DDIR --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://${HOST_IP}:${CONSTE_PORT}/"
+    	CMD="constellation-node --url=https://${HOST_IP_BASE}$((HOST_IP_OFFSET+i-2)):${CUR_CONSTE_PORT}/ --port=${CUR_CONSTE_PORT} --workdir=$DDIR --socket=tm.ipc --publickeys=tm.pub --privatekeys=tm.key --othernodes=https://${HOST_IP}:${CONSTE_PORT}/"
     fi
     echo "$CMD >> ${QDATA_DIR}/logs/constellation$i.log 2>&1 &"
     $CMD >> "${QDATA_DIR}/logs/constellation$i.log" 2>&1 &
