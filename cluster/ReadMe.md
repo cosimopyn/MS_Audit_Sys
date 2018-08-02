@@ -7,4 +7,4 @@ We use `HOST_IP_BASE` and `HOST_IP_OFFSET` in "config-cluster.json" to define th
 VM IP configuration Setting:  
 1. Azure -> VM -> Network Interface  
 2. Enable IP forwarding  
-3. Add IP configuration  
+3. Add IP configuration with a Static IP
