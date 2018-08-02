@@ -61,8 +61,8 @@ elif [ "$1"x == "-write"x ]; then
     CUSTOMER=`echo $LINE | cut -d " " -f 1`
     if [ "$CUSTOMER"x == "$2"x ]; then
       ADDRESS=`echo $LINE | cut -d " " -f 2`
-      sed -i -e "s/var mess.*/var mess=\"$2\";/" public_exist_contract.js
-      sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" public_exist_contract.js 
+      sed -i -e "s/var mess.*/var mess=\"$2\";/" write_exist_contract.js
+      sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" write_exist_contract.js 
       OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"write_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc` 
       exit
     fi
