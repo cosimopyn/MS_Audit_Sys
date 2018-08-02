@@ -21,35 +21,5 @@ if [ "$EXIST_DATE"x == "$DATE"x ]; then
   echo "Contract address is $ADDRESS"
   echo 'To get record, please use ./read_data '
 else
-  sed -i -e "s/var mess.*/var mess=\"$DATE\";/" public_new_contract.js
-  OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"public_new_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
-  TXN=`echo $OUT | cut -d " " -f 1`
-  sed -i -e "s/var TXNHash.*/var TXNHash=\"$TXN\";/" get_contract_addr.js
-  
-  LOOP=true
-  ITER=0
-  while $LOOP; do
-    sleep 1
-    LOOP=false
-    ITER=$((ITER+1))
-    OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"get_contract_addr.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
-    ADDRESS=`echo $OUT | cut -d " " -f 1`
-    if [ "$ADDRESS"x == "err:"x ]; then
-      LOOP=true
-      echo 'Waiting to mine the block.'
-    fi
-    if [ $ITER -eq 30 ]; then
-      echo "Something goes wrong while mining. Please check logs."
-      exit
-    fi
-  done
-
-  sed -i -e "s/var mess.*/var mess=\"$1\";/" public_exist_contract.js
-  sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" public_exist_contract.js
-  OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"public_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
-  
-  echo 'New contract created and record stored.'
-  echo "Contract address is $ADDRESS"
-  echo 'To get record, please use ./run'
-  echo "$DATE $ADDRESS" &>> ${QDATA_DIR}/.addresses.dat
+  new_contract_get_addr() $INFO $QDATA_DIR $CON_DD= $QUO_DD
 fi
