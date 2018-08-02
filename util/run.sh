@@ -28,13 +28,13 @@ EOF`
     raft.addPeer("$3");
     exit;
 EOF`
-  RES=`echo $OUT | cut -d '>' -f 2 | cut -d ' ' -f 2`
-  if [ "$RES"x == "Error:"x ]; then
-    echo 'Wrong Enode URL. Please check.'
-  else
-    echo "RADT ID of the new node is:$RES"
-    new_contract_get_addr $RAFT_ID $QDATA_DIR $CON_DD $QUO_DD
-  fi
+    RES=`echo $OUT | cut -d '>' -f 2 | cut -d ' ' -f 2`
+    if [ "$RES"x == "Error:"x ]; then
+      echo 'Wrong Enode URL. Please check.'
+    else
+      echo "RADT ID of the new node is:$RES"
+      new_contract_get_addr $RAFT_ID $QDATA_DIR $CON_DD $QUO_DD
+    fi
   
   # wrong option
   else
@@ -50,22 +50,41 @@ EOF`
   RES=`echo $OUT  | cut -d '>' -f 2`
   echo "Current block number is:$RES"
   
+# -write command
+elif [ "$1"x == "-write"x ]; then
+  if [ $# -eq 1 ]; then
+    echo 'Blank input is not allowed.'
+    exit
+  fi
+  while read LINE;
+  do
+    CUSTOMER=`echo $LINE | cut -d " " -f 1`
+    if [ "$CUSTOMER"x == "$2"x ]; then
+      ADDRESS=`echo $LINE | cut -d " " -f 2`
+      sed -i -e "s/var mess.*/var mess=\"$2\";/" public_exist_contract.js
+      sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" public_exist_contract.js 
+      OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"public_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc` 
+      exit
+    fi
+  done  < ${QDATA_DIR}/.addresses.dat
+  echo "No $3 found. Please check."
+
 # -data command
 elif [ "$1"x == "-data"x ]; then
   
-  # --day option
-  if [ "$2"x == "--day"x ]; then
+  # --cust option
+  if [ "$2"x == "--cust"x ]; then
     while read LINE;
     do
       # echo $LINE
-      DATE=`echo $LINE | cut -d " " -f 1`
-      if [ "$DATE"x == "$3"x ]; then
+      CUSTOMER=`echo $LINE | cut -d " " -f 1`
+      if [ "$CUSTOMER"x == "$3"x ]; then
         ADDRESS=`echo $LINE | cut -d " " -f 2`
         get_data_via_address $ATTACHPARAMETER $QDATA_DIR $CON_DD $ABI $ADDRESS
         exit
       fi
     done  < ${QDATA_DIR}/.addresses.dat
-    echo 'Wrong date format <YYYY-MM-DD>. Please check.'
+    echo "No $3 found. Please check."
     
   # --addr option
   elif [ "$2"x == "--addr"x ]; then 
