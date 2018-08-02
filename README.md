@@ -22,5 +22,5 @@ Then get RAFT ID and edit "config.json"
 `./start_node.sh`  
 
 - Stop a node  
-`killall geth bootnode constellation-node`  
+`killall geth constellation-node`  
 `rm -rf Distributed_Audit .qdata`  
