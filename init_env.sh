@@ -11,7 +11,4 @@ chmod +x ./cluster/gene_enodes.sh
 chmod +x ./node/gene_key.sh
 chmod +x ./node/start_node.sh
 
-chmod +x ./util/write_public.sh
-chmod +x ./util/write_private.sh
-chmod +x ./util/read_data.sh
 chmod +x ./util/run.sh
