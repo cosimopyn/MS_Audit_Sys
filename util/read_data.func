@@ -8,11 +8,11 @@ function show_help()
   echo "      -block                      Get current block number"
   echo "      -peer                       Operation on peers in the private network"
   echo "              --num                      Get current peer number (excepet self)"
-  echo "              --add    <ENODE_URL>       Add a peer with its Enode URL"
-  echo "      -help                       Show help"
+  echo "              --add    <Enode_URL>       Add a peer with its Enode URL"
+  echo "      -help            <Customer_name>   Show help"
   echo "      -write                      write data in the blockchain"
   echo "      -read                       Get data in the blockchain"
-  echo "              --cust   <YYYY-MM-DD>      Search by customer"
+  echo "              --cust   <Customer_name>   Search by customer"
   echo "              --addr   <Address_Hash>    Search by address hash"
   echo ""
 }
@@ -87,7 +87,7 @@ function new_contract_get_addr()
   
   INFO="Customer$((RAFT_ID-7))"
   sed -i -e "s/var mess.*/var mess=\"$INFO\";/" write_new_contract.js
-  sed -i -e "s/var cust_addr.*/var cust_addr=$CUST_ADDRESS;/" write_new_contract.js
+  sed -i -e "s/var cust_addr.*/var cust_addr=\"$CUST_ADDRESS\";/" write_new_contract.js
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"write_new_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
   TXN=`echo $OUT | cut -d " " -f 1`
   sed -i -e "s/var TXNHash.*/var TXNHash=\"$TXN\";/" get_contract_addr.js
