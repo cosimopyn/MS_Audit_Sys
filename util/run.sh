@@ -71,6 +71,7 @@ elif [ "$1"x == "-write"x ]; then
         sed -i -e "s/var mess.*/var mess=\"$3\";/" write_exist_contract.js
         sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" write_exist_contract.js 
         OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"write_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc` 
+        echo "Record $3 stored."
         exit
       fi
     fi
