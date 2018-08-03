@@ -2,7 +2,7 @@
 
 function show_help()
 {
-  echo "Version: 0.3"
+  echo "Version: 0.4"
   echo "Usage: "
   echo "./run command [option] [arguments]"
   echo "      -block                      Get current block number"
@@ -10,20 +10,21 @@ function show_help()
   echo "              --num                      Get current peer number (excepet self)"
   echo "              --add    <ENODE_URL>       Add a peer with its Enode URL"
   echo "      -help                       Show help"
-  echo "      -data                       Get data in the blockchain"
-  echo "              --day    <YYYY-MM-DD>      Search by date"
+  echo "      -write                      write data in the blockchain"
+  echo "      -read                       Get data in the blockchain"
+  echo "              --cust   <YYYY-MM-DD>      Search by customer"
   echo "              --addr   <Address_Hash>    Search by address hash"
   echo ""
 }
 
-
-function get_data_via_address()
+function is_permissioned()
 {
   ATTACHPARAMETER=$1
   QDATA_DIR=$2
   CON_DD=$3
   ABI=$4
   ADDRESS=$5
+  
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
   var simpleContract = web3.eth.contract(${ABI});
   var simple = simpleContract.at("${ADDRESS}");
@@ -34,10 +35,25 @@ EOF`
     
   if [ "$RES"x == "Error:"x ]; then
     echo 'Contract address is wrong. Please check.'
+    return 0
   elif [ "$RES"x == "Permission"x ]; then
     echo 'Permission denied'
+    return 0
   else
     echo "Contract info is $RES"
+    return 1
+}
+
+function get_data_via_address()
+{
+  ATTACHPARAMETER=$1
+  QDATA_DIR=$2
+  CON_DD=$3
+  ABI=$4
+  ADDRESS=$5
+  is_permissioned &ATTACHPARAMETER $QDATA_DIR $CON_DD $ABI $ADDRESS
+  
+  if [ $? -eq 1 ]; then  
     OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
     var simpleContract = web3.eth.contract(${ABI});
     var simple = simpleContract.at("${ADDRESS}");
