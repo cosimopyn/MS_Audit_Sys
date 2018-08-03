@@ -42,6 +42,7 @@ EOF`
   else
     echo "Contract info is $RES"
     return 1
+  fi
 }
 
 function get_data_via_address()
