@@ -24,6 +24,11 @@ EOF`
   
   # --add option
   elif [ "$2"x == "--add"x ]; then
+    if [ $# -nq 4 ]; then
+      echo 'Wrong arguments. Please check.'
+      exit
+    fi
+    touch ${QDATA_DIR}/.addresses.dat
     OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
     raft.addPeer("$3");
     exit;
