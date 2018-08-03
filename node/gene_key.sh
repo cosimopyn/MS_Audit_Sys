@@ -39,8 +39,8 @@ echo 'Your ENode URL is:'
 echo "$ENODE_URL"
 ACCOUNT=0x`geth --keystore ${QDATA_DIR}/dd/keystore/ account list | cut -d " " -f 3 | cut -b 2-41` 
 echo '[*] Please login in any node of the blockchain network'
-echo "Run ./run.sh -peer --add '$ENODE_URL' $ACCOUNT"
-echo 'Then get the command line to start node' 
+echo "[*] Run ./run.sh -peer --add '$ENODE_URL' $ACCOUNT"
+echo '[*] Then get the command line to start node' 
 
 #echo '[*] Please use ipc to login in any node of the blockchain network instead of http '
 #echo '[*] Run > raft.addPeer("'$ENODE_URL'");'
