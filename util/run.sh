@@ -75,7 +75,7 @@ elif [ "$1"x == "-write"x ]; then
   echo "No $3 found. Please check."
 
 # -data command
-elif [ "$1"x == "-data"x ]; then
+elif [ "$1"x == "-read"x ]; then
   
   # --cust option
   if [ "$2"x == "--cust"x ]; then
