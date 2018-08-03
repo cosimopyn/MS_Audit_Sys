@@ -73,5 +73,5 @@ echo '--------------------------------------------------------------------------
 echo "Done"
 echo 'To attach to the Geth node, pelase run '"geth attach ${QDATA_DIR}/dd/geth.ipc" 
 
-touch ${QDATA_DIR}/.address.data
+touch ${QDATA_DIR}/.addresses.dat
 echo "customer$((RAFT_ID-7)) $2" &>> ${QDATA_DIR}/.addresses.dat
