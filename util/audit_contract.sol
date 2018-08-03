@@ -4,7 +4,7 @@ contract audit_store {
   string[] _data;
   string _info;
   address _customer;
-  address _server=0xed9d02e382b34818e88b88a309c7fe71e65f419d;
+  address constant _server=0xed9d02e382b34818e88b88a309c7fe71e65f419d;
   
   constructor(string info, address customer) public {
     _info=info;
@@ -12,7 +12,7 @@ contract audit_store {
   }
 
   function put(string record) public returns (string retVal) {
-    if(msg.sender!=_customer && msg.sender!=_server)
+    if(msg.sender!=_customer)
       return "Permission denied";
     _data.push(record);
     return "Record written";
@@ -25,7 +25,7 @@ contract audit_store {
   }
   
   function get_num() constant public returns (uint num) {
-    if(msg.sender!=_customer)
+    if(msg.sender!=_customer && msg.sender!=_server)
       return 0;
     return _data.length;
   }
@@ -39,4 +39,3 @@ contract audit_store {
   function get_customer() constant public returns (address customer) {
     return _customer;
   }
-}
