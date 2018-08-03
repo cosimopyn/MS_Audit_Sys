@@ -66,7 +66,7 @@ elif [ "$1"x == "-write"x ]; then
     CUSTOMER=`echo $LINE | cut -d " " -f 1`
     if [ "$CUSTOMER"x == "$2"x ]; then      
       ADDRESS=`echo $LINE | cut -d " " -f 2`
-      is_permissioned &ATTACHPARAMETER $QDATA_DIR $CON_DD $ABI $ADDRESS
+      is_permissioned $ATTACHPARAMETER $QDATA_DIR $CON_DD $ABI $ADDRESS
       if [ $? -eq 1 ]; then 
         sed -i -e "s/var mess.*/var mess=\"$3\";/" write_exist_contract.js
         sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" write_exist_contract.js 
