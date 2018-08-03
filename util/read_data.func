@@ -34,6 +34,8 @@ EOF`
     
   if [ "$RES"x == "Error:"x ]; then
     echo 'Contract address is wrong. Please check.'
+  elif [ "$RES"x == "Permission"x ]; then
+    echo 'Permission denied'
   else
     echo "Contract info is $RES"
     OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
