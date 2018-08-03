@@ -38,7 +38,7 @@ EOF`
       echo 'Wrong Enode URL. Please check.'
     else
       echo "RADT ID of the new node is:$RES"
-      new_contract_get_addr $RAFT_ID $QDATA_DIR $CON_DD $QUO_DD $4
+      new_contract_get_addr $RES $QDATA_DIR $CON_DD $QUO_DD $4
     fi
   
   # wrong option
