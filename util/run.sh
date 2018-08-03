@@ -24,7 +24,7 @@ EOF`
   
   # --add option
   elif [ "$2"x == "--add"x ]; then
-    if [ $# -nq 4 ]; then
+    if [ $# -ne 4 ]; then
       echo 'Wrong arguments. Please check.'
       exit
     fi
