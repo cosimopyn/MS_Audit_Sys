@@ -64,9 +64,11 @@ function new_contract_get_addr()
   QDATA_DIR=$2
   CON_DD=$3
   QUO_DD=$4
+  CUST_ADDRESS=$5
   
   INFO="Customer$((RAFT_ID-7))"
   sed -i -e "s/var mess.*/var mess=\"$INFO\";/" write_new_contract.js
+  sed -i -e "s/var cust_addr.*/var cust_addr=$CUST_ADDRESS;/" write_new_contract.js
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"write_new_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
   TXN=`echo $OUT | cut -d " " -f 1`
   sed -i -e "s/var TXNHash.*/var TXNHash=\"$TXN\";/" get_contract_addr.js
