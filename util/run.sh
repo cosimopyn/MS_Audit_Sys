@@ -68,14 +68,14 @@ elif [ "$1"x == "-write"x ]; then
       ADDRESS=`echo $LINE | cut -d " " -f 2`
       is_permissioned &ATTACHPARAMETER $QDATA_DIR $CON_DD $ABI $ADDRESS
       if [ $? -eq 1 ]; then 
-        sed -i -e "s/var mess.*/var mess=\"$2\";/" write_exist_contract.js
+        sed -i -e "s/var mess.*/var mess=\"$3\";/" write_exist_contract.js
         sed -i -e "s/var address.*/var address=\"$ADDRESS\";/" write_exist_contract.js 
         OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"write_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc` 
         exit
       fi
     fi
   done  < ${QDATA_DIR}/.addresses.dat
-  echo "No $3 found. Please check."
+  echo "No $2 found. Please check."
 
 # -data command
 elif [ "$1"x == "-read"x ]; then
