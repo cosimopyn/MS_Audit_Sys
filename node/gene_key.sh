@@ -37,9 +37,10 @@ PUBKEY=`bootnode -nodekey ${QDATA_DIR}/dd/geth/nodekey -writeaddress`
 ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:${PORT}"'?discport=0&raftport='"${RAFT_PORT}"
 echo 'Your ENode URL is:'
 echo "$ENODE_URL"
+ACCOUNT=0x`geth --keystore ${QDATA_DIR}/dd/keystore/ account list | cut -d " " -f 3 | cut -b 2-41` 
 echo '[*] Please login in any node of the blockchain network'
-echo "Run ./read_data.sh -peer --add '$ENODE_URL'"
-echo 'Then get RAFT ID of this node, and edit "config.json" file' 
+echo "Run ./run.sh -peer --add '$ENODE_URL' $ACCOUNT"
+echo 'Then get the command line to start node' 
 
 #echo '[*] Please use ipc to login in any node of the blockchain network instead of http '
 #echo '[*] Run > raft.addPeer("'$ENODE_URL'");'
