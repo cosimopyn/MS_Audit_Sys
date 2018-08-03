@@ -52,7 +52,7 @@ function get_data_via_address()
   CON_DD=$3
   ABI=$4
   ADDRESS=$5
-  is_permissioned &ATTACHPARAMETER $QDATA_DIR $CON_DD $ABI $ADDRESS
+  is_permissioned $ATTACHPARAMETER $QDATA_DIR $CON_DD $ABI $ADDRESS
   
   if [ $? -eq 1 ]; then  
     OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
