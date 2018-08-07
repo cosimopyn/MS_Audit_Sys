@@ -5,6 +5,6 @@
     "RAFT_PORT":        50401,
     "CONSTE_PORT":      9001,
     "QDATA_DIR":        "../../.qdata",
-    "HOST_IP_BASE":          "172.16.1.",
-    "HOST_IP_OFFSET":        9
+    "HOST_IP_BASE":     "172.16.1.",
+    "HOST_IP_OFFSET":   9
 }
