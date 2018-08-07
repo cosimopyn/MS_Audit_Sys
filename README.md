@@ -1,11 +1,15 @@
 # Distributed Audit System  
 
 ## Introduction
-This project provides a platform to .set up a private 
-
-as the server
-
-
+This project provides a platform to set up a private blockchain network.  
+Each node in this cluster has its own identity, as well as public and private keys to encrypte records.  
+As the server, it can read encrypted audit records of all customers.  
+As a customer, it only interacts with the server rather than other customers. It can write and read audit data from its own contract, while has no access to other customers'.   
+This system is equipped with several characteristics:  
+  - Distribution: The whole system is decentralized without the need of a trusted authority.
+  - Privacy: All data in contracts are encrypted. Besides, a customer can access to its own contract rather than others'.
+  - Safety: Data stored in blockchian are immutable. 
+  - Permission: If a new peer want to join the private network, it needs to apply to server for permission.
 
 ## Flowchart  
 [avatar](https://github.com/cosimoth/Distributed_Audit/blob/master/chart.jpg)
@@ -26,13 +30,13 @@ sh ./init_env.sh
 
 ## Start a server  
 ```sh
-cd cluster
+cd ../cluster
 # Check configurations in file "./config-cluster.json", including IP addresses and ports
 ./init_cluster.sh
 ./start_cluster.sh
 ```
 
-#### Note   
+### Note   
 + Since the server needs to be established on one VM in this example, it should own seven different IP addresses to start its seven nodes.   
 The VM on Azure can set its IP configuration as follows:
   1. Azure -> VM -> Network Interface  
@@ -52,8 +56,8 @@ However, we need to do the following step "Start a node" for seven times， whic
 
 ## Start a node
 ```sh
-cd node
-# Check configurations in file "./config.json", including IP addresses and ports
+cd ../node
+# Check configurations in file "./config.json", including IP address and ports
 ./gene_key.sh
 # Save password in ../pw.dat
 # Get the command (./run.sh -peer --add ...) from the output, run it on server
@@ -63,14 +67,15 @@ cd node
 
 ## Stop a node  
 ```sh
+cd ../..
 killall geth constellation-node
 rm -rf Distributed_Audit .qdata
 ```
 
 ## Write and read 
 ```sh
-cd util
-# Check configurations in "./config-util.json"
+cd ../util
+# Check data directory configuration in "./config-util.json"
 # Get help:
 ./run.sh -help
 # Show block number:
