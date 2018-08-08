@@ -62,7 +62,7 @@ cd ../node
 # Save password in ../pw.dat
 # Get the command (./run.sh -peer --add ...) from the output, run it on server
 # Get the command (./start_node.sh ...) from the output, then start the node with it 
-./start_node.sh <RAFT_ID> <contract_addr>
+./start_node.sh <RAFT_ID> <contract_addr> <pub_key>
 ```
 
 ## Stop a node  
