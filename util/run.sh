@@ -38,6 +38,9 @@ EOF`
       echo 'Wrong Enode URL. Please check.'
     else
       echo "RADT ID of the new node is:$RES"
+      echo "To start the new node, please run ./start_node.sh $RES"
+      echo "[*] If done, press any key to continue..."
+      read aa
       new_contract_get_addr $RES $QDATA_DIR $CON_DD $QUO_DD $4
     fi
   
