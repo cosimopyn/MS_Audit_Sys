@@ -38,8 +38,9 @@ ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:${PORT}"'?discport=0&raftport='"${RAFT
 echo 'Your ENode URL is:'
 echo "$ENODE_URL"
 ACCOUNT=0x`geth --keystore ${QDATA_DIR}/dd/keystore/ account list | cut -d " " -f 3 | cut -b 2-41` 
+CON_PUB_KEY=`cat ${QDATA_DIR}/con/tm.pub`
 echo '[*] Please login in any node of the blockchain network'
-echo "[*] Run ./run.sh -peer --add '$ENODE_URL' $ACCOUNT"
+echo "[*] Run ./run.sh -peer --add '$ENODE_URL' $ACCOUNT $CON_PUB_KEY"
 echo '[*] Then get the command line to start node' 
 
 #echo '[*] Please use ipc to login in any node of the blockchain network instead of http '
