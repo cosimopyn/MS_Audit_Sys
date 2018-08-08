@@ -38,10 +38,7 @@ ENODE_URL='enode://'"${PUBKEY}@${HOST_IP}:${PORT}"'?discport=0&raftport='"${RAFT
 echo 'Your ENode URL is:'
 echo "$ENODE_URL"
 
-echo '[*] Please login in any node of the blockchain network'
-echo "[*] Run ./run.sh -peer --add '$ENODE_URL'"
-echo '[*] Then get the command line to start node' 
-
+echo "[*] Before starting the node, run on server: ./run.sh -peer --add '$ENODE_URL'" 
 echo '----------------------------------------------------------------------------'
 echo 'Done'
 
