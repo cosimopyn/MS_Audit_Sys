@@ -35,7 +35,7 @@ EOF`
 EOF`
     RES=`echo $OUT | cut -d '>' -f 2 | cut -d ' ' -f 2`
     if [ "$RES"x == "Error:"x ]; then
-      echo 'Wrong Enode URL. Please check.'
+      echo 'Wrong Enode URL or it has been added to the network. Please check.'
     else
       echo "RADT ID of the new node is:$RES"
       new_contract_get_addr $RES $QDATA_DIR $CON_DD $QUO_DD $4 $5
