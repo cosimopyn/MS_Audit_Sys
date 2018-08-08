@@ -88,6 +88,7 @@ function new_contract_get_addr()
   INFO="Customer$((RAFT_ID-7))"
   sed -i -e "s/var mess.*/var mess=\"$INFO\";/" write_new_contract.js
   sed -i -e "s/var cust_addr.*/var cust_addr=\"$CUST_ADDRESS\";/" write_new_contract.js
+  sed -i -e "s/var pubkey.*/var pubkey=\"$PUB_KEY\";/" write_new_contract.js
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"write_new_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
   TXN=`echo $OUT | cut -d " " -f 1`
   sed -i -e "s/var TXNHash.*/var TXNHash=\"$TXN\";/" get_contract_addr.js
@@ -113,7 +114,7 @@ function new_contract_get_addr()
   
   echo "New contract created, contract address is $ADDRESS"
   echo "[*] To save the address, please run on node: echo customer$((RAFT_ID-7)) $ADDRESS &>> ../../.qdata/.addresses.dat"
-  echo "[*] To write record, please run on node: ./run.sh -write customer$((RAFT_ID-7)) <record>"
+  echo "[*] To write audit record, please run on node: ./run.sh -write customer$((RAFT_ID-7)) <record>"
 }
 
 
