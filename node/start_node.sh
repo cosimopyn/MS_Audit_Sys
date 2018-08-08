@@ -75,3 +75,7 @@ echo 'To attach to the Geth node, pelase run '"geth attach ${QDATA_DIR}/dd/geth.
 
 touch ${QDATA_DIR}/.addresses.dat
 echo "customer$((RAFT_ID-7)) $2" &>> ${QDATA_DIR}/.addresses.dat
+
+ACCOUNT=0x`geth --keystore ${QDATA_DIR}/dd/keystore/ account list | cut -d " " -f 3 | cut -b 2-41` 
+CON_PUB_KEY=`cat ${QDATA_DIR}/con/tm.pub`
+echo "[*] To create contract, run on server: ./run.sh -create $((RAFT_ID-7)) $ACCOUNT '$CON_PUB_KEY'"
