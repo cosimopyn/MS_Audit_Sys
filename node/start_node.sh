@@ -26,6 +26,8 @@ CLUS_CON_PORT=`jq -r '.CLUS_CON_PORT' ./config.json`
 echo "Cluste IP: $CLUSTER_IP"
 echo "Cluster Constellation Port: $CLUS_CON_PORT"
 
+touch ${QDATA_DIR}/.addresses.dat
+
 read -p "Is it right?(y/n): " CONFIRMED
 if [ "$CONFIRMED"x != "y"x ]; then
     echo "Exiting, please edit \"config.json\""
