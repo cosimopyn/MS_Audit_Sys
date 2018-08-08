@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 2 ]; then
+if [ $# -ne 1 ]; then
   echo 'Lack of arguments. Please check output of Server.'
   exit
 fi
