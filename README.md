@@ -13,6 +13,7 @@ This system is equipped with several characteristics:
 
 ## Flowchart  
 [avatar](https://github.com/cosimoth/Distributed_Audit/blob/master/chart.jpg)
+![avatar](./chart.jpg)
 
 ## Environment  
 Operating system:  
