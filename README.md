@@ -12,7 +12,6 @@ This system is equipped with several characteristics:
   - Permission: If a new peer want to join the private network, it needs to apply to server for permission.
 
 ## Flowchart  
-[avatar](https://github.com/cosimoth/Distributed_Audit/blob/master/chart.jpg)
 ![avatar](./chart.jpg)
 
 ## Environment  
