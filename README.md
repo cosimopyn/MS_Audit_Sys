@@ -45,8 +45,8 @@ The VM on Azure can set its IP configuration as follows:
   4. Add IP addresses to VM OS by follwing this [document](https://docs.microsoft.com/zh-cn/azure/virtual-network/virtual-network-multiple-ip-addresses-portal#os-config)   
 
 + We suppose these IP addresses are continuous, sharing a HOST_IP_BASE and starting with a HOST_IP_OFFSET (defined in "config-cluster.json").  
-The main IP address of this server is `$HOST_IP`  
-others are `${HOST_IP_BASE}${HOST_IP_OFFSET}`,   
+The main IP address of this server is `$HOST_IP`.  
+Others are `${HOST_IP_BASE}${HOST_IP_OFFSET}`,   
 `${HOST_IP_BASE}$((HOST_IP_OFFSET+1))`, ...,   
 `${HOST_IP_BASE}$((HOST_IP_OFFSET+5))`, respectively.  
 
