@@ -17,7 +17,7 @@ This system is equipped with several characteristics:
 
 ## Environment  
 Operating system:  
-Ubuntu 16.04
+Ubuntu 16.04  
 Software version:   
 golang 1.9.3, geth 1.7.2  
 
