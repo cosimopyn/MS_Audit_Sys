@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 2 ]; then
+if [ $# -ne 1 ]; then
   echo 'Lack of arguments. Please check output of Server.'
   exit
 fi
@@ -70,8 +70,7 @@ ARGS="--nodiscover -verbosity 5 --networkid $NETWORK_ID --raft --rpc --rpcaddr 0
 PRIVATE_CONFIG=${QDATA_DIR}/con/tm.ipc nohup geth --datadir ${QDATA_DIR}/dd $ARGS --raftjoinexisting $RAFT_ID --raftport $RAFT_PORT --rpcport $RPC_PORT --port $PORT --unlock 0 --password ../pw.dat 2>>${QDATA_DIR}/logs/quorum.log &
 echo "Established Quorum node from host($HOST_IP:$PORT) to Network ($CLUSTER_IP)"
 echo '----------------------------------------------------------------------------'
-echo "Done"
-echo 'To attach to the Geth node, pelase run '"geth attach ${QDATA_DIR}/dd/geth.ipc" 
+echo "[*] Done, please press any key on server to continue"
+# echo 'To attach to the Geth node, pelase run '"geth attach ${QDATA_DIR}/dd/geth.ipc" 
 
 touch ${QDATA_DIR}/.addresses.dat
-echo "customer$((RAFT_ID-7)) $2" &>> ${QDATA_DIR}/.addresses.dat
