@@ -112,7 +112,8 @@ function new_contract_get_addr()
   echo "customer$((RAFT_ID-7)) $ADDRESS" &>> ${QDATA_DIR}/.addresses.dat
   
   echo "New contract created, contract address is $ADDRESS"
-  echo "To start the new node, please run ./start_node.sh $RAFT_ID $ADDRESS"
+  echo "[*] To save the address, please run on node: echo customer$((RAFT_ID-7)) $ADDRESS &>> ../../.qdata/.addresses.dat"
+  echo "[*] To write record, please run on node: ./run.sh -write customer$((RAFT_ID-7)) <record>"
 }
 
 
