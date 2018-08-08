@@ -24,7 +24,7 @@ EOF`
   
   # --add option
   elif [ "$2"x == "--add"x ]; then
-    if [ $# -ne 5 ]; then
+    if [ $# -ne 3 ]; then
       echo 'Wrong arguments. Please check.'
       exit
     fi
@@ -38,7 +38,7 @@ EOF`
       echo 'Wrong Enode URL or it has been added to the network. Please check.'
     else
       echo "RADT ID of the new node is:$RES"
-      new_contract_get_addr $RES $QDATA_DIR $CON_DD $QUO_DD $4 $5
+      echo "To start the new node, please run on customer: ./start_node.sh $RES"
     fi
   
   # wrong option
@@ -46,6 +46,17 @@ EOF`
     show_help
   fi
   
+# -create command
+elif [ "$1"x == "-create"x ]; then
+  if [ $# -ne 4 ]; then
+    echo 'Wrong arguments. Please check.'
+    exit
+  fi
+  CUST_ID=$2
+  CUST_ADDRESS=$3
+  CUST_PUB_KEY=$4
+  new_contract_get_addr $CUST_ID $QDATA_DIR $CON_DD $QUO_DD $CUST_ADDRESS $CUST_PUB_KEY
+    
 # -block command
 elif [ "$1"x == "-block"x ]; then
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth attach $ATTACHPARAMETER <<EOF
