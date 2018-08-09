@@ -22,7 +22,7 @@ golang 1.9.3, geth 1.7.2
 
 ## Install dependency  
 ```sh
-git clone -b 0.4 https://github.com/cosimoth/Distributed_Audit.git 
+git clone https://github.com/cosimoth/Distributed_Audit.git 
 cd Distributed_Audit
 sh ./init_env.sh
 ./install_dep.sh
