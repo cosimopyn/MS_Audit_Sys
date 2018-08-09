@@ -84,7 +84,7 @@ elif [ "$1"x == "-write"x ]; then
         sed -i -e "s/var mess.*/var mess=\"${WRITE_DATA//\//\\/}\";/" write_exist_contract.js
         sed -i -e "s/var address.*/var address=\"${ADDRESS//\//\\/}\";/" write_exist_contract.js 
         OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"write_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc` 
-        echo "Record $3 stored."
+        echo "Record $WRITE_DATA stored."
       fi
       exit
     fi
@@ -96,11 +96,12 @@ elif [ "$1"x == "-read"x ]; then
   
   # --cust option
   if [ "$2"x == "--cust"x ]; then
+    CUST_NAME=$3
     while read LINE;
     do
       # echo $LINE
       CUSTOMER=`echo $LINE | cut -d " " -f 1`
-      if [ "$CUSTOMER"x == "$3"x ]; then
+      if [ "$CUSTOMER"x == "$CUST_NAME"x ]; then
         ADDRESS=`echo $LINE | cut -d " " -f 2`
         get_data_via_address $ATTACHPARAMETER $QDATA_DIR $CON_DD $ABI $ADDRESS
         exit
