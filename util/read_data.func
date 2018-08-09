@@ -89,9 +89,9 @@ function new_contract_get_addr()
   PUB_KEY=$6
   
   INFO=$CUST_NAME
-  sed -i -e "s/var mess.*/var mess=\"${INFO////\/}\";/" write_new_contract.js
-  sed -i -e "s/var cust_addr.*/var cust_addr=\"${CUST_ADDRESS////\/}\";/" write_new_contract.js
-  sed -i -e "s/var pubkey.*/var pubkey=\"${PUB_KEY////\/}\";/" write_new_contract.js
+  sed -i -e "s/var mess.*/var mess=\"${INFO//\//\\/}\";/" write_new_contract.js
+  sed -i -e "s/var cust_addr.*/var cust_addr=\"${CUST_ADDRESS//\//\\/}\";/" write_new_contract.js
+  sed -i -e "s/var pubkey.*/var pubkey=\"${PUB_KEY//\//\\/}\";/" write_new_contract.js
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"write_new_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
   TXN=`echo $OUT | cut -d " " -f 1`
   sed -i -e "s/var TXNHash.*/var TXNHash=\"$TXN\";/" get_contract_addr.js
