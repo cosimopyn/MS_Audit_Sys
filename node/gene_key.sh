@@ -39,8 +39,8 @@ echo 'Your ENode URL is:'
 echo "$ENODE_URL"
 
 echo "[*] Before starting the node, run on server: ./run.sh -peer --add '$ENODE_URL'" 
-echo '----------------------------------------------------------------------------'
-echo 'Done'
+# echo '----------------------------------------------------------------------------'
+# echo 'Done'
 
 mkdir -p ${QDATA_DIR}/logs
 touch ${QDATA_DIR}/logs/constellation.log
