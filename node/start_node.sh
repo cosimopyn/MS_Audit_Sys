@@ -26,8 +26,6 @@ CLUS_CON_PORT=`jq -r '.CLUS_CON_PORT' ./config.json`
 echo "Cluste IP: $CLUSTER_IP"
 echo "Cluster Constellation Port: $CLUS_CON_PORT"
 
-touch ${QDATA_DIR}/.addresses.dat
-
 read -p "Is it right?(y/n): " CONFIRMED
 if [ "$CONFIRMED"x != "y"x ]; then
     echo "Exiting, please edit \"config.json\""
@@ -76,7 +74,6 @@ echo "Done"
 echo 'To attach to the Geth node, pelase run '"geth attach ${QDATA_DIR}/dd/geth.ipc" 
 
 touch ${QDATA_DIR}/.addresses.dat
-echo "customer$((RAFT_ID-7)) $2" &>> ${QDATA_DIR}/.addresses.dat
 
 ACCOUNT=0x`geth --keystore ${QDATA_DIR}/dd/keystore/ account list | cut -d " " -f 3 | cut -b 2-41` 
 CON_PUB_KEY=`cat ${QDATA_DIR}/con/tm.pub`
