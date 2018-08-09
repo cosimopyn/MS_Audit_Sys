@@ -9,10 +9,12 @@ function show_help()
   echo "      -peer                       Operation on peers in the private network"
   echo "              --num                      Get current peer number (excepet self)"
   echo "              --add    <Enode_URL>       Add a peer with its Enode URL"
-  echo "      -help            <Customer_name>   Show help"
+  echo "      -help            <Customer_Name>   Show help"
+  echo "      -create                     Create contract to store"
+  echo "                       <Customer_Name> <Address_Hash> <Public_key>"
   echo "      -write                      write data in the blockchain"
   echo "      -read                       Get data in the blockchain"
-  echo "              --cust   <Customer_name>   Search by customer"
+  echo "              --cust   <Customer_Name>   Search by customer"
   echo "              --addr   <Address_Hash>    Search by address hash"
   echo ""
 }
@@ -79,17 +81,17 @@ EOF`
 
 function new_contract_get_addr()
 {
-  CUST_ID=$1
+  CUST_NAME=$1
   QDATA_DIR=$2
   CON_DD=$3
   QUO_DD=$4
   CUST_ADDRESS=$5
   PUB_KEY=$6
   
-  INFO="Customer$CUST_ID"
-  sed -i -e "s/var mess.*/var mess=\"$INFO\";/" write_new_contract.js
-  sed -i -e "s/var cust_addr.*/var cust_addr=\"$CUST_ADDRESS\";/" write_new_contract.js
-  sed -i -e "s/var pubkey.*/var pubkey=\"$PUB_KEY\";/" write_new_contract.js
+  INFO=$CUST_NAME
+  sed -i -e "s/var mess.*/var mess=\"${INFO////\/}\";/" write_new_contract.js
+  sed -i -e "s/var cust_addr.*/var cust_addr=\"${CUST_ADDRESS////\/}\";/" write_new_contract.js
+  sed -i -e "s/var pubkey.*/var pubkey=\"${PUB_KEY////\/}\";/" write_new_contract.js
   OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"write_new_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc`
   TXN=`echo $OUT | cut -d " " -f 1`
   sed -i -e "s/var TXNHash.*/var TXNHash=\"$TXN\";/" get_contract_addr.js
@@ -111,7 +113,7 @@ function new_contract_get_addr()
       exit
     fi
   done
-  echo "customer$CUST_ID $ADDRESS" &>> ${QDATA_DIR}/.addresses.dat
+  echo "$CUST_NAME $ADDRESS" &>> ${QDATA_DIR}/.addresses.dat
   
   echo "New contract created, contract address is $ADDRESS"
   echo "[*] To save the address, please run on customer: echo customer$CUST_ID $ADDRESS &>> ../../.qdata/.addresses.dat"
