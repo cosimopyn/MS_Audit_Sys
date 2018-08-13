@@ -75,7 +75,7 @@ killall geth constellation-node
 rm -rf Distributed_Audit .qdata
 ```
 
-## Write and read 
+## Write and read audit data
 ```sh
 cd ../util
 # Check data directory configuration in "./config-util.json"
@@ -87,9 +87,9 @@ cd ../util
 ./run.sh -peer --num
 # Add a new peer:
 ./run.sh -peer --add <Customer_ID>
-# Write audit record (customer only):   
+# Write audit data (customer only):   
 ./run.sh -write <Audit_Data>
-# Read audit record:  
+# Read audit data:  
 ./run.sh -read --cust <Customer_Name>
 ./run.sh -read --addr <Contract_ID>
 ```
