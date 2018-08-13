@@ -65,7 +65,7 @@ cd ./node
 ./start_node.sh <RAFT_ID>
 # Get the command (./run.sh -create ...) from the output, run it on server
 # Get the command (echo ...) from the output of server, and save it
-echo customer ...
+echo ...  &>> ...
 ```
 
 ## Stop a node  
