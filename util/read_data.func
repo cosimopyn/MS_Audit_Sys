@@ -37,7 +37,7 @@ EOF`
   RES=`echo $OUT  | cut -d '>' -f 4 | cut -d ' ' -f 2`
     
   if [ "$RES"x == "Error:"x ]; then
-    echo 'Contract address is wrong. Please check.'
+    echo 'Permission denied or contract is wrong. Please check.'
     return 0
   elif [ "$RES"x == "Permission"x ]; then
     echo 'Permission denied'
