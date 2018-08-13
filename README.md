@@ -65,7 +65,7 @@ cd ./node
 ./start_node.sh <RAFT_ID>
 # Get the command (./run.sh -create ...) from the output, run it on server
 # Get the command (echo ...) from the output of server, and save it
-echo ...  &>> ...
+echo <Customer_Name> <Address_ID> &>> ../../.qdata/.addresses.dat
 ```
 
 ## Stop a node  
@@ -86,9 +86,9 @@ cd ../util
 # Show peer number:
 ./run.sh -peer --num
 # Add a new peer:
-./run.sh -peer --add <peer_identity>
+./run.sh -peer --add <Customer_ID>
 # Write audit record (customer only):   
-./run.sh -write <audit_record>
+./run.sh -write <Audit_Data>
 # Read audit record:  
-./run.sh -read --cust <customer_name>
+./run.sh -read --cust <Customer_Name>
 ```
