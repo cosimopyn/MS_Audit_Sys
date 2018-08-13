@@ -54,15 +54,18 @@ Others are `${HOST_IP_BASE}${HOST_IP_OFFSET}`,
 The first node acts as a bootnode, which means other nodes are all connected with it to find other peers in the network.  
 However, we need to do the following step "Start a node" for seven times， which is a little time-consuming.  
 
-## Start a node
+## Start a customer and join the network
 ```sh
 cd ./node
 # Check configurations in file "./config.json", including IP address and ports
 ./gene_key.sh
 # Save password in ../pw.dat
 # Get the command (./run.sh -peer --add ...) from the output, run it on server
-# Get the command (./start_node.sh ...) from the output, then start the node with it 
-./start_node.sh <RAFT_ID> <contract_addr> <pub_key>
+# Get the command (./start_node.sh ...) from the output of server, then start the node with it 
+./start_node.sh <RAFT_ID>
+# Get the command (./run.sh -create ...) from the output, run it on server
+# Get the command (echo ...) from the output of server, and save it
+echo customer ...
 ```
 
 ## Stop a node  
@@ -84,8 +87,8 @@ cd ../util
 ./run.sh -peer --num
 # Add a new peer:
 ./run.sh -peer --add <peer_identity>
-# Write audit record:   
-./run.sh -write <customer_name> <audit_record>
+# Write audit record (customer only):   
+./run.sh -write <audit_record>
 # Read audit record:  
-./run.sh -read <customer_name>
+./run.sh -read --cust <customer_name>
 ```
