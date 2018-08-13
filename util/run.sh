@@ -81,8 +81,8 @@ elif [ "$1"x == "-write"x ]; then
       ADDRESS=`echo $LINE | cut -d " " -f 2`
       is_permissioned $ATTACHPARAMETER $QDATA_DIR $CON_DD $ABI $ADDRESS
       if [ $? -eq 1 ]; then 
-        sed -i -e "s/var mess.*/var mess=\"${WRITE_DATA//\//\\/}\";/" write_exist_contract.js
-        sed -i -e "s/var contract_id.*/var contract_id=\"${ADDRESS//\//\\/}\";/" write_exist_contract.js 
+        sed -i -e "s/var mess.*/var mess = \"${WRITE_DATA//\//\\/}\";/" write_exist_contract.js
+        sed -i -e "s/var contract_id.*/var contract_id = \"${ADDRESS//\//\\/}\";/" write_exist_contract.js 
         OUT=`PRIVATE_CONFIG=${QDATA_DIR}/${CON_DD}/tm.ipc geth --exec "loadScript(\"write_exist_contract.js\")" attach ipc:${QDATA_DIR}/${QUO_DD}/geth.ipc` 
         echo "Record $WRITE_DATA stored."
       fi
