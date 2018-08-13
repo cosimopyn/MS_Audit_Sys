@@ -11,12 +11,12 @@ function show_help()
   echo "              --add    <Customer_ID>     Add a peer with its Enode URL"
   echo "      -help                              Show help"
   echo "      -create                     Create contract to store"
-  echo "                       <Customer_Name> <Address_ID> <Public_Key>"
+  echo "                       <Customer_Name> <Customer_ID> <Public_Key>"
   echo "      -write                      Write data in the blockchain (customer only)"
   echo "                       <Customer_Name> <Audit_Data>"
   echo "      -read                       Get data in the blockchain"
   echo "              --cust   <Customer_Name>   Search by customer"
-  echo "              --addr   <Address_ID>      Search by address hash"
+  echo "              --addr   <Contract_ID>      Search by address hash"
   echo ""
 }
 
