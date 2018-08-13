@@ -91,4 +91,5 @@ cd ../util
 ./run.sh -write <Audit_Data>
 # Read audit record:  
 ./run.sh -read --cust <Customer_Name>
+./run.sh -read --addr <Contract_ID>
 ```
