@@ -3,7 +3,7 @@
 ## Introduction
 This project provides a platform to set up a private blockchain network as a distributed audit system. Contracts of Ethereum play a role of containers in this scenario to store audit records.   
 Each node in this cluster has its own identity, equipped with public and private keys to encrypte records.  
-As the server, it can read encrypted audit records of all customers. It owns seven nodes to guarantee consensus mechanism to work well when customers are few.  
+As the server, it can read encrypted audit records of all customers. It owns seven nodes to guarantee consensus mechanism to work well when customers are few. Besides, when some customers are crashed, audit data can be recovered by syncing up with the nodes left.   
 As a customer, it can write and read audit data from its own contract. It only interacts with the server, independent of other customers.  
 This system is equipped with several characteristics:  
   - Distribution: The whole system is decentralized without the need of a trusted authority.
