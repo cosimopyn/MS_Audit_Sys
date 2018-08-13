@@ -30,7 +30,7 @@ sh ./init_env.sh
 
 ## Start a server  
 ```sh
-cd ../cluster
+cd ./cluster
 # Check configurations in file "./config-cluster.json", including IP addresses and ports
 ./init_cluster.sh
 ./start_cluster.sh
@@ -56,7 +56,7 @@ However, we need to do the following step "Start a node" for seven times， whic
 
 ## Start a node
 ```sh
-cd ../node
+cd ./node
 # Check configurations in file "./config.json", including IP address and ports
 ./gene_key.sh
 # Save password in ../pw.dat
