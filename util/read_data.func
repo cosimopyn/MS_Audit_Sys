@@ -117,7 +117,7 @@ function new_contract_get_addr()
   
   echo "New contract created, contract address is $ADDRESS"
   echo "[*] To save the address, please run on customer: echo $CUST_NAME $ADDRESS &>> ../../.qdata/.addresses.dat"
-  echo "[*] To write record, please run on customer: ./run.sh -write $CUST_NAME"
+  echo "[*] To write record, please run on customer: ./run.sh -write $CUST_NAME <audit_record>"
 }
 
 
