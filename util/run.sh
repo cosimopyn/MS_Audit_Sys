@@ -91,7 +91,7 @@ elif [ "$1"x == "-write"x ]; then
   done  < ${QDATA_DIR}/.addresses.dat
   echo "No $2 found. Please check."
 
-# -data command
+# -read command
 elif [ "$1"x == "-read"x ]; then
   
   # --cust option
