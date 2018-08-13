@@ -13,7 +13,7 @@ function show_help()
   echo "      -create                     Create contract to store"
   echo "                       <Customer_Name> <Address_Hash> <Public_key>"
   echo "      -write                      Write data in the blockchain (customer only)"
-  echo "                       <Customer_Name> <Audit_data>
+  echo "                       <Customer_Name> <Audit_data>"
   echo "      -read                       Get data in the blockchain"
   echo "              --cust   <Customer_Name>   Search by customer"
   echo "              --addr   <Address_Hash>    Search by address hash"
