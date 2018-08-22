@@ -28,6 +28,13 @@ sh ./init_env.sh
 ./install_dep.sh
 ```
 
+## Compile a smart contract  
+We can compile a new smart contract in the Linux shell with the command tool "solc". Utilize "--bin" flag to get the binary code, "--abi" to get the ABI (Application Binary Interface), and "--gas" to estimate the gas usage, i.e.,  
+```sh
+solc --bin --abi --gas <Contract_name>.sol
+```
+After compiled, the ABI and bytecode can be used until the contract needs to be updated. Note that once a instance of a contract is deployed on the blockchain, it cannot be deleted or modified. If you develop a new version of contract codes, you have to deploy a new instance on the blockchain.   
+
 ## Start a server  
 ```sh
 cd ./cluster
