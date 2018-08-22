@@ -33,7 +33,8 @@ We can compile a new smart contract in the Linux shell with the command tool "so
 ```sh
 solc --bin --abi --gas <Contract_name>.sol
 ```
-After compiled, the ABI and bytecode can be used until the contract needs to be updated. Note that once a instance of a contract is deployed on the blockchain, it cannot be deleted or modified. If you develop a new version of contract codes, you have to deploy a new instance on the blockchain.   
+After compiled, the ABI and binary code from the output can be used in the Java scripts (such as `./util/write_exist_contract.js` and `./util/write_new_contract.js`) to deploy a new contract instance on the blockchian, or call functions of exsisting contracts.  
+Note that once an instance of a smart contract is deployed on the blockchain, it cannot be deleted or modified. If you develop a new version of contract codes, you have to deploy a new instance on the blockchain, without means to replace the former one.   
 
 ## Start a server  
 ```sh
