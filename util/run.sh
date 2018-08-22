@@ -20,7 +20,7 @@ if [ "$1"x == "-peer"x ]; then
     exit;
 EOF`
   RES=`echo $OUT  | cut -d '>' -f 2`
-  echo "Current peer number is: $((RES-6))"
+  echo "Current peer number is: $((RES-5))"
   
   # --add option
   elif [ "$2"x == "--add"x ]; then
