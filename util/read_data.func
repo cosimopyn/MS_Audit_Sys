@@ -43,7 +43,7 @@ EOF`
     echo 'Permission denied'
     return 0
   else
-    echo "Contract info is $RES"
+    echo "S info is $RES"
     return 1
   fi
 }
