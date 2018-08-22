@@ -77,4 +77,4 @@ touch ${QDATA_DIR}/.addresses.dat
 
 ACCOUNT=0x`geth --keystore ${QDATA_DIR}/dd/keystore/ account list | cut -d " " -f 3 | cut -b 2-41` 
 CON_PUB_KEY=`cat ${QDATA_DIR}/con/tm.pub`
-echo "[*] To create contract, run on server: ./run.sh -create customer$((RAFT_ID-7)) $ACCOUNT '$CON_PUB_KEY'"
+echo "[*] To create storage, run on server: ./run.sh -create customer$((RAFT_ID-7)) $ACCOUNT '$CON_PUB_KEY'"
