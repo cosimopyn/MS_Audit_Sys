@@ -29,6 +29,7 @@ sh ./init_env.sh
 ```
 
 ## Compile a smart contract  
+The smart contract is written in the Solidity language developed by Ethereum. Its syntax is similar to that of Java.  
 We can compile a new smart contract in the Linux shell with the command tool "solc". Utilize "--bin" flag to get the binary code, "--abi" to get the ABI (Application Binary Interface), and "--gas" to estimate the gas usage, i.e.,  
 ```sh
 solc --bin --abi --gas <Contract_name>.sol
