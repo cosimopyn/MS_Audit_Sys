@@ -43,7 +43,7 @@ EOF`
     echo 'Permission denied'
     return 0
   else
-    echo "S info is $RES"
+    echo "Storage info is $RES"
     return 1
   fi
 }
