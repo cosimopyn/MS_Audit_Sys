@@ -10,6 +10,7 @@ This system is equipped with several characteristics:
   - Privacy: All data in contracts are encrypted. Besides, a customer can access to its own contract rather than others'.
   - Safety: Data stored in blockchian are immutable. 
   - Permission: If a new peer want to join the private network, it needs to apply to server for permission.  
+  
 In this document, the root path where this project locates is denoted as `$PROJ_HOME` for clarity.  
 
 ## Flowchart  
