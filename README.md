@@ -94,24 +94,28 @@ cd ./util
 
 ## Manage the node of a Customer 
 ### Start a node as a Customer  
+Generate encryption keys and identity files with a password 
 ```sh
 cd ./node
 # Check configurations in file "./config.json", including IP address and ports
-# Generate keys
 ./gene_key.sh
-# Save password in ../pw.dat
+
 ```
+Then save the password in `../pw.dat`.
 
 ### Join the network and get the storage address
+Run the command (./run.sh -peer --add ...) from the output of "gene_key.sh" on the node of Audit Team.  
+It adds the identity of this Customer to the membetship of the private blockchain network.  
+Then a command (./start_node.sh ...) can be obtained from the output of Audit Team. Run it on the Customer node to join the as:  
 ```sh
 cd ./node
 # Check configurations in file "./config.json", including IP address and ports
-# Run the command (./run.sh -peer --add ...) from the output of "gene_key.sh" on the node of Audit Team
-# It adds the identity of this Customer to the membetship of the private blockchain network
-# Run the command (./start_node.sh ...) from the output of Audit Team as:
 ./start_node.sh <RAFT_ID>
-# Run the command (./run.sh -create ...) from the output of "start_node.sh" on the node of Audit Team. It creates a new contract as the storage for this Customer.
-# Run the command (echo ...) from the output of Audit Team as:
+```
+Run the command (./run.sh -create ...) from the output of "start_node.sh" on the node of Audit Team.   
+It creates a new contract as the storage for this Customer.  
+Then get the command (echo ...) from the output of Audit Team. Run it on the Customer node as:  
+```sh
 echo <Customer_Name> <Storage_Address> &>> ../../.qdata/.addresses.dat
 ```
 
