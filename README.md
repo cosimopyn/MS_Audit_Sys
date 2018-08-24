@@ -39,7 +39,9 @@ Or it can be debugged and compiled online at this [website](http://remix.ethereu
 After compiled, the ABI and binary code from the output can be used in the Java scripts (such as `./util/write_exist_contract.js` and `./util/write_new_contract.js`) to deploy a new contract instance on the blockchian, or call functions of exsisting contracts.  
 Note that once an instance of a smart contract is deployed on the blockchain, it cannot be deleted or modified. If you develop a new version of contract codes, you have to deploy a new instance on the blockchain, without means to replace the former one.   
 
-## Start a server  
+
+## Manage the node of Audit Team  
+### Start a node as the Audit Team  
 ```sh
 cd ./cluster
 # Check configurations in file "./config-cluster.json", including IP addresses and ports
@@ -47,7 +49,7 @@ cd ./cluster
 ./start_cluster.sh
 ```
 
-### Note   
+### Notes   
 + Since the server needs to be established on one VM in this example, it should own seven different IP addresses to start its seven nodes.   
 The VM on Azure can set its IP configuration as follows:
   1. Azure -> VM -> Network Interface  
@@ -65,30 +67,69 @@ Others are `${HOST_IP_BASE}${HOST_IP_OFFSET}`,
 The first node acts as a bootnode, which means other nodes are all connected with it to find other peers in the network.  
 However, we need to do the following step "Start a node" for seven times， which is a little time-consuming.  
 
-## Start a customer and join the network
+### Add a new Customer
+```sh
+cd ./util
+# Check data directory configuration in "./config-util.json"
+./run.sh -peer --add <Customer_ID>
+```
+
+### Deploy a new contract as a storage for a Customer
+```sh
+cd ./util
+# Check data directory configuration in "./config-util.json"
+# Create a new storage for a customer:
+./run.sh -create <Customer_Name> <Customer_ID> <Public_Key>
+```
+
+### Read audit data
+```sh
+cd ./util
+# Check data directory configuration in "./config-util.json"
+# Read audit data:  
+./run.sh -read --cust <Customer_Name>
+# or
+./run.sh -read --addr <Storage_Address>
+```
+
+## Manage the node of a Customer 
+### Start a node as a Customer  
 ```sh
 cd ./node
 # Check configurations in file "./config.json", including IP address and ports
+# Generate keys
 ./gene_key.sh
 # Save password in ../pw.dat
-# Get the command (./run.sh -peer --add ...) from the output, run it on server
-# Get the command (./start_node.sh ...) from the output of server, then start the node with it 
+```
+
+### Join the network and get the storage address
+```sh
+cd ./node
+# Check configurations in file "./config.json", including IP address and ports
+# Run the command (./run.sh -peer --add ...) from the output of "gene_key.sh" on the node of Audit Team
+# It adds the identity of this Customer to the membetship of the private blockchain network
+# Run the command (./start_node.sh ...) from the output of Audit Team as:
 ./start_node.sh <RAFT_ID>
-# Get the command (./run.sh -create ...) from the output, run it on server
-# Get the command (echo ...) from the output of server, and save it
+# Run the command (./run.sh -create ...) from the output of "start_node.sh" on the node of Audit Team. It creates a new contract as the storage for this Customer.
+# Run the command (echo ...) from the output of Audit Team as:
 echo <Customer_Name> <Storage_Address> &>> ../../.qdata/.addresses.dat
 ```
 
-## Stop a node  
+### Write and read audit data
 ```sh
-cd ../..
-killall geth constellation-node
-rm -rf Distributed_Audit .qdata
+cd ./util
+# Check data directory configuration in "./config-util.json"
+# Write audit data (customer only):   
+./run.sh -write <Audit_Data>
+# Read audit data:  
+./run.sh -read --cust <Customer_Name>
+# or
+./run.sh -read --addr <Storage_Address>
 ```
 
-## Write and read audit data
+## Other tools
 ```sh
-cd ../util
+cd ./util
 # Check data directory configuration in "./config-util.json"
 # Get help:
 ./run.sh -help
@@ -96,13 +137,10 @@ cd ../util
 ./run.sh -block
 # Show peer number:
 ./run.sh -peer --num
-# Add a new peer:
-./run.sh -peer --add <Customer_ID>
-# Create a new storage for a customer:
-./run.sh -create <Customer_Name> <Customer_ID> <Public_Key>
-# Write audit data (customer only):   
-./run.sh -write <Audit_Data>
-# Read audit data:  
-./run.sh -read --cust <Customer_Name>
-./run.sh -read --addr <Storage_Address>
+```
+
+## Stop a node  
+```sh
+killall geth constellation-node
+rm -rf Distributed_Audit .qdata
 ```
