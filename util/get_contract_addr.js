@@ -5,6 +5,6 @@ geth --exec "loadScript(\"get_contract_addr.js\") ..."
 which utilizes geth command to attach the node IPC and execute the script
 */
 
-var TXNHash="<Transaction_Hash>";
+var TXNHash = "<Transaction_Hash>";
 
 console.log(eth.getTransactionReceipt(TXNHash).contractAddress);
