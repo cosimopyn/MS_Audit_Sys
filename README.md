@@ -56,6 +56,8 @@ And other six IP addresses are `${HOST_IP_BASE}${HOST_IP_OFFSET}` (172.16.1.9),
 `${HOST_IP_BASE}$((HOST_IP_OFFSET+5))` (172.16.1.14), respectively.  
 These configurations should be set properly in `config-cluster.json`.  
 
++ The settings of all ports (including `PORT`, `RPC_PORT`, `RAFT_PORT` and `CONSTE_PORT`) are not fixed. Other ports are ok if they are free. They'll be connected by nodes of Customers.  
+
 + We can also start the node of Audit Team on seven different VMs. In this case, each VM only need to be equipped with one IP address.  
 The first node acts as a bootnode, which means other nodes are all connected with it to find other peers in the network.  
 However, we need to do the following step "Start a node" for seven times， which is a little time-consuming.  
@@ -96,8 +98,7 @@ cd $PROJ_HOME/util
 ## Manage the node of a Customer  
 ### Preparations 
 The node of a Customer should be equipped with one IP address, which can connect to the Audit Team's node without errors.  
-`CLUSTER_IP` is the `HOST_IP` of Audit Team's node.  
-The configurations should be set properly in `config.json`.  
+In `$PROJ_HOME/node/config.json`, the configurations should be set properly. `CLUSTER_IP` is the `HOST_IP` of Audit Team's node, and `CLUS_CON_PORT` corresponds to Audit Team's `CONSTE_PORT` setting.  
 
 ### Start a node as a Customer  
 Generate encryption keys and identity files with a password 
