@@ -150,9 +150,26 @@ cd $PROJ_HOME/util
 ./run.sh -peer --num
 ```
 
-## Stop a node  
+## Stop a node 
 ```sh
 cd $PROJ_HOME/..
 killall geth constellation-node
-rm -rf Distributed_Audit .qdata
+```
+
+## Restart a node
+As the Audit Team:
+```sh
+cd $PROJ_HOME/cluster
+./start_cluster.sh
+```
+As a Customer:
+```sh
+cd $PROJ_HOME/node
+./start_node.sh <RAFT_ID>
+```
+
+## Remove data
+```sh
+cd $PROJ_HOME/..
+rm -rf .qdata
 ```
