@@ -1,5 +1,5 @@
 /*
-A Java script template to write data into a smart contract
+A Java script template to write data into an existing contract
 It is called in the "run.sh":
 geth --exec "loadScript(\"write_exist_contract.js\") ..."
 which utilizes geth command to attach the node IPC and execute the script
