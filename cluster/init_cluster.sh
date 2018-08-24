@@ -7,26 +7,26 @@ killall geth bootnode constellation-node
 rm -rf ${QDATA_DIR}
 mkdir -p ${QDATA_DIR}/logs
 
-echo "Configuring node 1 (permissioned)..."
+echo "Configuring node 1..."
 mkdir -p ${QDATA_DIR}/dd1/keystore
 mkdir -p ${QDATA_DIR}/dd1/geth
 cp keys/key1 ${QDATA_DIR}/dd1/keystore
 cp raft/nodekey1 ${QDATA_DIR}/dd1/geth/nodekey
 
-echo "Configuring node 2 (permissioned)..."
+echo "Configuring node 2..."
 mkdir -p ${QDATA_DIR}/dd2/keystore
 mkdir -p ${QDATA_DIR}/dd2/geth
 cp keys/key2 ${QDATA_DIR}/dd2/keystore
 cp raft/nodekey2 ${QDATA_DIR}/dd2/geth/nodekey
 
-echo "Configuring node 3 (permissioned)..."
+echo "Configuring node 3..."
 mkdir -p ${QDATA_DIR}/dd3/keystore
 mkdir -p ${QDATA_DIR}/dd3/geth
 cp keys/key6 ${QDATA_DIR}/dd3/keystore
 cp keys/key3 ${QDATA_DIR}/dd3/keystore
 cp raft/nodekey3 ${QDATA_DIR}/dd3/geth/nodekey
 
-echo "Configuring node 4 (permissioned)..."
+echo "Configuring node 4..."
 mkdir -p ${QDATA_DIR}/dd4/keystore
 mkdir -p ${QDATA_DIR}/dd4/geth
 cp keys/key4 ${QDATA_DIR}/dd4/keystore
