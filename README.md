@@ -111,10 +111,10 @@ cd $PROJ_HOME/node
 ```
 Then save the password in `../pw.dat`.  
 After this step, there're four keys generated:  
-1. Key pairs of the encryption system, stored in `$PROJ_HOME/../.qdata/con/` as `tm.pub` (public key) and `tm.key` (private key).
-2. Node key as the identity of this machine, stored in the `$PROJ_HOME/../.qdata/dd/geth/nodekey` as `nodekey`. 
-3. Enode URL which is used to apply to the Audit Team. It is the combination of node key along with the IP address and ports setttings of this machine, as `ENODE_NRL=enode://${NODE_KEY}@${HOST_IP}:${PORT}?discport=0&raftport=${RAFT_PORT}`.  
-4. Account file as the identity of this Customer, stored in the `$PROJ_HOME/../.qdata/dd/keystore`.
++ Key pairs of the encryption system, stored in `$PROJ_HOME/../.qdata/con/` as `tm.pub` (public key) and `tm.key` (private key).
++ Node key as the identity of this machine, stored in the `$PROJ_HOME/../.qdata/dd/geth/nodekey` as `nodekey`. 
++ Enode URL which is used to apply to the Audit Team. It is the combination of node key along with the IP address and ports setttings of this machine, as `ENODE_NRL=enode://${NODE_KEY}@${HOST_IP}:${PORT}?discport=0&raftport=${RAFT_PORT}`.  
++ Account file as the identity of this Customer, stored in the `$PROJ_HOME/../.qdata/dd/keystore`.
 
 ### Join the network and get the storage address
 Run the command (./run.sh -peer --add ...) from the output of "gene_key.sh" on the node of Audit Team.  
