@@ -4,6 +4,7 @@ contract audit_store {
   string[] _data;
   string _info;
   address _customer;
+  // The ID of audit team is the address in $PROJ_HOME/cluster/keys/key1
   address constant _server=0xed9d02e382b34818e88b88a309c7fe71e65f419d;
   
   constructor(string info, address customer) public {
