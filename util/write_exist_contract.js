@@ -7,7 +7,7 @@ which utilizes geth command to attach the node IPC and execute the script
 
 var mess = "<Audit_Data>";
 var contract_id = "<Storage_Address>";
-// Public key of Audit Team
+// Public key of Audit Team for encryption
 var pubkey = "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=";
 
 web3.eth.defaultAccount = eth.accounts[0];
