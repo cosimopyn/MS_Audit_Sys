@@ -6,5 +6,7 @@
     "CONSTE_PORT":      9001,
     "CLUSTER_IP":       "172.16.1.5",
     "CLUS_CON_PORT":    9001,
-    "QDATA_DIR":        "../../.qdata"
+    "QDATA_DIR":        "../../.qdata",
+    "CON_DD":           "c1",
+    "QUO_DD":           "dd1"
 }
