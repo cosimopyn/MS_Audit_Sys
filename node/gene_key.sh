@@ -21,10 +21,10 @@ rm -rf ${QDATA_DIR}
 echo "Start to generate keys..."
 mkdir -p ${QDATA_DIR}/dd/keystore
 mkdir -p ${QDATA_DIR}/dd/geth
-mkdir -p ${QDATA_DIR}/con
+mkdir -p ${QDATA_DIR}/c1
 # encrypted Constellation key pair
 echo 'Now you need to enter your Constellation password  (you can use an empty one)'
-constellation-node --generatekeys=${QDATA_DIR}/con/tm
+constellation-node --generatekeys=${QDATA_DIR}/c1/tm
 # node key
 bootnode -genkey ${QDATA_DIR}/dd/geth/nodekey
 # private account key file
