@@ -44,3 +44,5 @@ contract audit_store {
   function get_customer() constant public returns (address customer) {
     return _customer;
   }
+  
+}
