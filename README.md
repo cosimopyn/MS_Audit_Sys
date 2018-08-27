@@ -152,7 +152,7 @@ cd $PROJ_HOME/util
 ./run.sh -help
 # Show block number:
 ./run.sh -block
-# Show peer number:
+# Show peer number (Audit Team is regarded as one peer):
 ./run.sh -peer --num
 ```
 
