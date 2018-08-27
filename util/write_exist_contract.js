@@ -7,7 +7,7 @@ which utilizes geth command to attach the node IPC and execute the script
 
 var mess = "<Audit_Data>";
 var contract_id = "<Storage_Address>";
-var pubkey = "<Public_Key>";
+var pubkey = "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=";
 
 web3.eth.defaultAccount = eth.accounts[0];
 //The ABI of a contract can be compiled by solc command. More details see README.md
