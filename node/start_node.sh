@@ -15,6 +15,7 @@ CONSTE_PORT=`jq -r '.CONSTE_PORT' ./config.json`
 QDATA_DIR=`jq -r '.QDATA_DIR' ./config.json`
 CON_DD=`jq -r '.CON_DD' ./config.json`
 QUO_DD=`jq -r '.QUO_DD' ./config.json`
+
 echo "RAFT ID: $RAFT_ID"
 echo "Host IP: $HOST_IP"
 echo "Port: $PORT"
